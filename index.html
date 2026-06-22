@@ -1,0 +1,2008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=yes">
+  <title>The Savory Bar | Artisan Platters & Custom Boxes</title>
+  <!-- Google Fonts with advanced elegant styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- AOS Library for scroll animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Light theme - Matching Menu Card Colors */
+    :root {
+      --bg-cream: #FDF5E6;
+      --terracotta: #C26A2C;
+      --terracotta-light: #D4844A;
+      --deep-umber: #8B4513;
+      --text-dark: #2C1810;
+      --text-soft: #5C3D2E;
+      --border-light: #E8DCC8;
+      --card-bg: #FFFFFF;
+      --card-hover: #FFFBF5;
+      --shadow-sm: 0 12px 28px -8px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+      --shadow-glow: 0 0 20px rgba(194, 106, 44, 0.12);
+      --bites-bg: #FFF9F0;
+      --bites-category: #FDF0E0;
+      --fine-note-bg: #F5EDE0;
+      --contact-bg: #FFF8F0;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Dark theme - Warm Dark Variation with requested business colors */
+    [data-theme="dark"] {
+      --bg-cream: #000000;
+      --terracotta: #edb153;
+      --terracotta-light: #edb153;
+      --deep-umber: #fdfdfd;
+      --text-dark: #fdfdfd;
+      --text-soft: #e0d6c8;
+      --border-light: #2a2a2a;
+      --card-bg: #111111;
+      --card-hover: #1a1a1a;
+      --shadow-sm: 0 12px 28px -8px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(237, 177, 83, 0.15);
+      --shadow-md: 0 20px 35px -12px rgba(0, 0, 0, 0.6);
+      --shadow-glow: 0 0 20px rgba(237, 177, 83, 0.25);
+      --bites-bg: #0a0a0a;
+      --bites-category: #151515;
+      --fine-note-bg: #0a0a0a;
+      --contact-bg: #0a0a0a;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      font-family: 'Source Serif 4', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      color: var(--text-dark);
+      scroll-behavior: smooth;
+      line-height: 1.5;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+
+    /* Custom cursor */
+    .custom-cursor {
+      width: 12px;
+      height: 12px;
+      background: var(--terracotta);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease;
+      opacity: 0;
+    }
+
+    .custom-cursor.active {
+      opacity: 0.6;
+      transform: scale(2);
+      background: var(--deep-umber);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border-light);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+    section:last-child {
+      border-bottom: none;
+    }
+
+    /* Background decorative elements */
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 0% 0%, var(--terracotta) 0%, transparent 50%);
+      opacity: 0.03;
+      z-index: 0;
+    }
+
+    /* Logo Styles - kept beautiful */
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.85rem;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #C26A2C, #8B4513);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      transition: var(--transition);
+    }
+    [data-theme="dark"] .logo {
+      background: linear-gradient(135deg, #edb153, #fdfdfd);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+    .logo:hover {
+      transform: scale(1.02);
+    }
+    .logo span {
+      font-weight: 500;
+      font-style: italic;
+      background: linear-gradient(135deg, #D4844A, #A0522D);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    [data-theme="dark"] .logo span {
+      background: linear-gradient(135deg, #edb153, #fdfdfd);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+      color: var(--deep-umber);
+      transition: color 0.3s ease;
+      text-transform: none;
+    }
+    h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 58px;
+      height: 3px;
+      background: var(--terracotta);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+    h2:hover:after {
+      width: 100%;
+    }
+
+    /* Theme Toggle Button */
+    .theme-toggle {
+      background: var(--card-bg);
+      border: 1px solid var(--border-light);
+      border-radius: 50px;
+      padding: 8px 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-soft);
+      transition: var(--transition);
+      margin-left: 20px;
+      font-family: 'Inter', sans-serif;
+    }
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+      border-color: var(--terracotta);
+      color: var(--terracotta);
+    }
+    .theme-toggle i {
+      font-size: 1rem;
+      transition: transform 0.3s;
+    }
+    .theme-toggle:hover i {
+      transform: rotate(15deg);
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: rgba(253, 245, 230, 0.95);
+      backdrop-filter: blur(14px);
+      z-index: 100;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border-light);
+      transition: all 0.3s ease;
+    }
+    [data-theme="dark"] .navbar {
+      background: rgba(0, 0, 0, 0.95);
+    }
+    .navbar.scrolled {
+      padding: 12px 0;
+      background: rgba(253, 245, 230, 0.98);
+      box-shadow: var(--shadow-sm);
+    }
+    [data-theme="dark"] .navbar.scrolled {
+      background: rgba(0, 0, 0, 0.98);
+    }
+    .nav-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      transition: 0.3s;
+      position: relative;
+      font-family: 'Inter', 'Source Serif 4', sans-serif;
+      letter-spacing: 0.3px;
+    }
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -6px;
+      left: 0;
+      background: var(--terracotta);
+      transition: 0.3s;
+    }
+    .nav-links a:hover:after {
+      width: 100%;
+    }
+    .nav-links a:hover {
+      color: var(--terracotta);
+      transform: translateY(-2px);
+    }
+    .mobile-menu {
+      display: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: var(--deep-umber);
+      transition: transform 0.2s ease;
+    }
+    .mobile-menu:hover {
+      transform: scale(1.1);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 80px;
+      text-align: center;
+      background: linear-gradient(0deg, rgba(253,245,230,0.92), rgba(253,245,230,0.86)), url('images/hero-bg.jpg') center/cover no-repeat;
+      border-radius: 0 0 40px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    [data-theme="dark"] .hero {
+      background: linear-gradient(0deg, rgba(0,0,0,0.92), rgba(0,0,0,0.86)), url('images/hero-bg.jpg') center/cover no-repeat;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(237,177,83,0.08) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .hero .logo-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.2rem;
+      font-weight: 700;
+      background: linear-gradient(125deg, #C26A2C, #8B4513);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+      animation: smoothRise 0.75s ease-out, glowPulse 3s ease-in-out infinite;
+      letter-spacing: 1px;
+    }
+    [data-theme="dark"] .hero .logo-main {
+      background: linear-gradient(125deg, #edb153, #fdfdfd);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+    @keyframes glowPulse {
+      0%, 100% { text-shadow: 0 0 0px rgba(237,177,83,0); }
+      50% { text-shadow: 0 0 20px rgba(237,177,83,0.5); }
+    }
+    .hero .savor-line {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      letter-spacing: 3px;
+      color: var(--terracotta);
+      margin-bottom: 0.8rem;
+      animation: smoothRise 0.75s 0.1s both, float 3s ease-in-out infinite;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+    .hero p {
+      font-family: 'Source Serif 4', 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      max-width: 560px;
+      margin: 1rem auto 0;
+      animation: smoothRise 0.75s 0.2s both;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+    .btn-group {
+      margin-top: 2.2rem;
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: smoothRise 0.75s 0.3s both;
+    }
+    .btn {
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.3px;
+      font-size: 0.9rem;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    .btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    .btn-primary {
+      background: var(--terracotta);
+      color: white;
+      box-shadow: 0 4px 10px rgba(194, 106, 44, 0.2);
+    }
+    .btn-primary:hover {
+      background: #A0522D;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(194, 106, 44, 0.3);
+    }
+    .btn-outline {
+      border: 1.5px solid var(--terracotta);
+      color: var(--terracotta);
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: rgba(194, 106, 44, 0.06);
+      transform: translateY(-3px);
+      border-color: #A0522D;
+    }
+
+    /* ========== REDESIGNED CUSTOM BOX BUILDER (MODERN, CLEAN, ALIGNED) ========== */
+    .custom-box-section {
+      background: var(--card-bg);
+      border-radius: 40px;
+      padding: 2rem;
+      margin-top: 2rem;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+    }
+    .custom-box-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: var(--terracotta);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .custom-box-subtitle {
+      color: var(--text-soft);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      font-family: 'Source Serif 4', serif;
+    }
+    .box-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .info-card {
+      background: var(--bites-bg);
+      border-radius: 28px;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid var(--border-light);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .info-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-glow);
+      border-color: var(--terracotta);
+    }
+    .info-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--terracotta);
+      margin-bottom: 0.65rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .info-card p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+      margin: 6px 0;
+      font-family: 'Source Serif 4', serif;
+    }
+    .info-card .price-tag {
+      font-weight: 700;
+      color: var(--deep-umber);
+      font-size: 1rem;
+      margin-top: 6px;
+    }
+    .delivery-pref-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1.5rem;
+      background: var(--bites-bg);
+      border-radius: 28px;
+      padding: 1.2rem 1.8rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-light);
+    }
+    .option-group {
+      display: flex;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .option-group label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      padding: 8px 20px;
+      border-radius: 60px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-light);
+      transition: all 0.2s;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+    }
+    .option-group label:hover {
+      border-color: var(--terracotta);
+      transform: translateY(-2px);
+    }
+    .option-group input {
+      accent-color: var(--terracotta);
+      width: 18px;
+      height: 18px;
+      margin: 0;
+    }
+    .builder-duo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 800px) {
+      .builder-duo {
+        grid-template-columns: 1fr;
+      }
+      .delivery-pref-row {
+        flex-direction: column;
+      }
+    }
+    .selector-panel {
+      background: var(--bites-bg);
+      border-radius: 32px;
+      padding: 1.5rem;
+      border: 1px solid var(--border-light);
+    }
+    .selector-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .selector-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--deep-umber);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+    }
+    .item-search {
+      background: var(--card-bg);
+      border: 1px solid var(--border-light);
+      border-radius: 60px;
+      padding: 8px 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      max-width: 260px;
+    }
+    .item-search i {
+      color: var(--terracotta);
+    }
+    .item-search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      width: 100%;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      font-family: 'Inter', sans-serif;
+    }
+    .selector-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .selector-item {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.25s ease;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+    }
+    .selector-item:hover {
+      border-color: var(--terracotta);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-glow);
+    }
+    .selector-item.selected {
+      border-left: 4px solid var(--terracotta);
+      background: rgba(237, 177, 83, 0.08);
+    }
+    .item-info .item-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-dark);
+      font-family: 'Inter', sans-serif;
+    }
+    .item-info .item-price {
+      font-size: 0.8rem;
+      color: var(--terracotta);
+      font-weight: 600;
+      margin-top: 4px;
+      font-family: 'Inter', sans-serif;
+    }
+    .item-quantity {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bites-bg);
+      padding: 4px 8px;
+      border-radius: 40px;
+    }
+    .qty-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+    }
+    .qty-btn:hover {
+      transform: scale(1.08);
+      background: var(--deep-umber);
+    }
+    .qty-value {
+      font-weight: 700;
+      min-width: 24px;
+      text-align: center;
+      color: var(--text-dark);
+      font-family: 'Inter', sans-serif;
+    }
+    .summary-panel {
+      background: var(--bites-bg);
+      border-radius: 32px;
+      padding: 1.5rem;
+      border: 1px solid var(--border-light);
+      position: sticky;
+      top: 110px;
+    }
+    .summary-panel h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--deep-umber);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+    .selected-items-list {
+      max-height: 220px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 6px 12px;
+    }
+    .cart-item-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 0.9rem;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+    }
+    .cart-item-row:last-child {
+      border-bottom: none;
+    }
+    .box-breakdown-modern {
+      background: rgba(237, 177, 83, 0.08);
+      border-radius: 24px;
+      padding: 14px;
+      margin: 1rem 0;
+    }
+    .box-line {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 0.9rem;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+    }
+    .cost-line {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .grand-total-line {
+      border-top: 2px solid var(--terracotta);
+      margin-top: 12px;
+      padding-top: 14px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--terracotta);
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Inter', sans-serif;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 1.8rem;
+      flex-wrap: wrap;
+    }
+    .action-buttons button {
+      flex: 1;
+      padding: 12px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-reset-order {
+      background: var(--border-light);
+      color: var(--text-soft);
+    }
+    .btn-reset-order:hover {
+      background: var(--terracotta);
+      color: white;
+      transform: translateY(-2px);
+    }
+    .btn-pdf-order {
+      background: #dc3545;
+      color: white;
+    }
+    .btn-pdf-order:hover {
+      transform: translateY(-2px);
+      background: #c82333;
+    }
+    .btn-whatsapp-order {
+      background: #25D366;
+      color: white;
+    }
+    .btn-whatsapp-order:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    }
+
+    /* Platters grid */
+    .platters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .platter-card {
+      background: var(--card-bg);
+      border-radius: 28px;
+      padding: 1.8rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      position: relative;
+      overflow: hidden;
+    }
+    .platter-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(237,177,83,0.08), transparent);
+      transition: left 0.6s;
+    }
+    .platter-card:hover::before {
+      left: 100%;
+    }
+    .platter-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--terracotta);
+      box-shadow: var(--shadow-md);
+    }
+    .platter-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--deep-umber);
+      transition: color 0.3s;
+    }
+    .platter-card:hover .platter-title {
+      color: var(--terracotta);
+    }
+    .price {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--terracotta);
+      margin: 0.6rem 0 0.25rem;
+      transition: transform 0.3s;
+    }
+    .platter-card:hover .price {
+      transform: scale(1.02);
+    }
+    .serves {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-bottom: 1rem;
+      border-left: 3px solid var(--terracotta);
+      padding-left: 10px;
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+    }
+    .item-list {
+      list-style: none;
+      margin: 1rem 0;
+    }
+    .item-list li {
+      padding: 5px 0;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-soft);
+      transition: transform 0.2s;
+      font-family: 'Source Serif 4', serif;
+    }
+    .item-list li:hover {
+      transform: translateX(5px);
+    }
+    .item-list i {
+      color: var(--terracotta);
+      transition: transform 0.2s;
+    }
+    .item-list li:hover i {
+      transform: scale(1.2);
+    }
+
+    /* Individual Bites */
+    .bites-wrapper {
+      background: var(--bites-bg);
+      border-radius: 32px;
+      border: 1px solid var(--border-light);
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+      margin-bottom: 2rem;
+    }
+    .bites-wrapper:hover {
+      box-shadow: var(--shadow-glow);
+    }
+    .bites-category {
+      background: var(--bites-category);
+      padding: 14px 24px;
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--deep-umber);
+      border-bottom: 1px solid var(--border-light);
+      position: relative;
+      overflow: hidden;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .bites-category::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--terracotta);
+      transition: width 0.6s;
+    }
+    .bites-wrapper:hover .bites-category::after {
+      width: 100%;
+    }
+    .bites-category i {
+      margin-right: 10px;
+      color: var(--terracotta);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; transform: scale(1.1); }
+    }
+    .bites-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 0.75rem;
+      padding: 1.6rem;
+    }
+    .bite-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid var(--border-light);
+      position: relative;
+      overflow: hidden;
+    }
+    .bite-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--terracotta);
+      transform: scaleY(0);
+      transition: transform 0.3s;
+    }
+    .bite-card:hover::before {
+      transform: scaleY(1);
+    }
+    .bite-card:hover {
+      transform: translateX(5px) translateY(-2px);
+      border-color: var(--terracotta);
+      background: var(--card-hover);
+      box-shadow: var(--shadow-sm);
+    }
+    .bite-name {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+    }
+    .bite-name i {
+      color: var(--terracotta);
+      width: 20px;
+      transition: transform 0.2s;
+    }
+    .bite-card:hover .bite-name i {
+      transform: rotate(10deg) scale(1.1);
+    }
+    .bite-price {
+      font-weight: 700;
+      color: var(--terracotta);
+      background: rgba(237, 177, 83, 0.12);
+      padding: 4px 12px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+    .bite-card:hover .bite-price {
+      background: var(--terracotta);
+      color: white;
+      transform: scale(1.05);
+    }
+    .fine-note {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      background: var(--fine-note-bg);
+      padding: 10px 24px;
+      border-radius: 60px;
+      display: inline-block;
+      color: var(--text-soft);
+      transition: all 0.3s;
+      cursor: default;
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+    }
+    .fine-note:hover {
+      transform: translateX(5px);
+      background: var(--bites-category);
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2rem;
+    }
+    .gallery-item {
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: var(--card-bg);
+      border: 1px solid var(--border-light);
+      position: relative;
+    }
+    .gallery-item:hover {
+      transform: scale(1.03) translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--terracotta);
+    }
+    .gallery-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      background: var(--bites-category);
+    }
+    .gallery-item:hover .gallery-img {
+      transform: scale(1.08);
+    }
+    .gallery-caption {
+      padding: 12px 16px;
+      font-weight: 500;
+      color: var(--deep-umber);
+      background: var(--card-bg);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: all 0.3s;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .gallery-item:hover .gallery-caption {
+      background: var(--terracotta);
+      color: white;
+    }
+
+    /* Testimonials */
+    .testimonial-grid {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .testimonial-card {
+      background: var(--card-bg);
+      padding: 1.7rem;
+      border-radius: 28px;
+      max-width: 330px;
+      border: 1px solid var(--border-light);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--terracotta);
+    }
+    .testimonial-card i.fa-quote-left {
+      transition: transform 0.3s;
+      color: var(--terracotta);
+    }
+    .testimonial-card:hover i.fa-quote-left {
+      transform: scale(1.2);
+    }
+    .testimonial-card p {
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+      color: var(--text-soft);
+    }
+    .customer-name {
+      font-weight: 600;
+      margin-top: 1rem;
+      color: var(--terracotta);
+      transition: color 0.3s;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+    }
+    .testimonial-card:hover .customer-name {
+      color: var(--deep-umber);
+    }
+
+    /* Contact */
+    .contact-flex {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      background: var(--contact-bg);
+      padding: 2rem;
+      border-radius: 48px;
+      border: 1px solid var(--border-light);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .contact-flex:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-5px);
+      border-color: var(--terracotta);
+    }
+    .contact-details i {
+      width: 36px;
+      color: var(--terracotta);
+      margin-right: 12px;
+      font-size: 1.2rem;
+      transition: transform 0.3s;
+    }
+    .contact-details p:hover i {
+      transform: scale(1.2) rotate(5deg);
+    }
+    .contact-details p {
+      margin: 14px 0;
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .contact-details a {
+      text-decoration: none;
+      color: var(--text-dark);
+      transition: all 0.3s;
+    }
+    .contact-details a:hover {
+      color: var(--terracotta);
+      transform: translateX(5px);
+      display: inline-block;
+    }
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .social-links a {
+      font-size: 2rem;
+      color: var(--terracotta);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .social-links a:hover {
+      color: var(--deep-umber);
+      transform: translateY(-5px) scale(1.1);
+    }
+    .whatsapp-large {
+      color: white;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      transition: all 0.3s;
+    }
+    .whatsapp-large:hover {
+      transform: scale(1.1) rotate(360deg);
+      color: white;
+    }
+    footer {
+      text-align: center;
+      padding: 35px 0 45px;
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      border-top: 1px solid var(--border-light);
+      transition: all 0.3s;
+      font-family: 'Source Serif 4', serif;
+    }
+    footer:hover {
+      color: var(--terracotta);
+    }
+
+    @keyframes smoothRise {
+      0% { opacity: 0; transform: translateY(20px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.6s ease;
+    }
+    .fade-up.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Scroll to top button */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--terracotta);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 99;
+      box-shadow: 0 4px 15px rgba(237,177,83,0.3);
+    }
+    .scroll-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    .scroll-top:hover {
+      transform: translateY(-5px) scale(1.1);
+      background: #d4953a;
+    }
+
+    /* Custom Scrollbars (only for summary list, not selector) */
+    .selected-items-list {
+      scrollbar-width: thin;
+      scrollbar-color: var(--terracotta) var(--bites-bg);
+    }
+    .selected-items-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .selected-items-list::-webkit-scrollbar-track {
+      background: var(--bites-bg);
+      border-radius: 999px;
+    }
+    .selected-items-list::-webkit-scrollbar-thumb {
+      background: var(--terracotta);
+      border-radius: 999px;
+    }
+
+    @media (max-width: 800px) {
+      .container { padding: 0 24px; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: var(--card-bg);
+        padding: 22px;
+        border-radius: 28px;
+        position: absolute;
+        top: 72px;
+        right: 20px;
+        gap: 1.2rem;
+        width: 220px;
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--border-light);
+      }
+      .nav-links.active { display: flex; }
+      .mobile-menu { display: block; }
+      .theme-toggle {
+        margin-left: 0;
+        margin-top: 10px;
+        justify-content: center;
+      }
+      .hero .logo-main { font-size: 3rem; }
+      h2 { font-size: 1.9rem; }
+      .bites-grid { grid-template-columns: 1fr; }
+      .contact-flex { flex-direction: column; text-align: center; }
+      .contact-details p { justify-content: center; }
+      .scroll-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
+      .selector-grid { grid-template-columns: 1fr; }
+      .action-buttons { flex-direction: column; }
+    }
+    @media (max-width: 540px) {
+      .platters-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="custom-cursor"></div>
+
+<nav class="navbar">
+  <div class="container nav-flex">
+    <div class="logo">THE SAVORY BAR <span>by Anasley</span></div>
+    <div class="mobile-menu" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#platters">Platters</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#individual">Bites</a></li>
+      <li><a href="#testimonials">Love</a></li>
+      <li><a href="#contact">Order</a></li>
+      <li>
+        <button class="theme-toggle" id="themeToggle">
+          <i class="fas fa-moon"></i>
+          <span>Dark Mode</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <section id="home" style="padding-bottom: 40px;">
+    <div class="container hero">
+      <div class="hero-content">
+        <div class="logo-main">THE SAVORY BAR</div>
+        <div class="savor-line">Savor. Share. Celebrate.</div>
+        <p>Delicious bites crafted to make every moment memorable — artisan wraps, classic rolls & premium platters.</p>
+        <div class="btn-group">
+          <a href="#platters" class="btn btn-primary">View Platters</a>
+          <a href="#individual" class="btn btn-outline">Build Your Box</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="platters">
+    <div class="container">
+      <h2 data-aos="fade-right" data-aos-duration="800">Signature Platters</h2>
+      <div class="platters-grid" id="plattersGrid"></div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="container">
+      <h2 data-aos="fade-right" data-aos-duration="800">From Our Kitchen</h2>
+      <div class="gallery-grid" id="galleryContainer"></div>
+    </div>
+  </section>
+
+  <section id="individual">
+    <div class="container">
+      <h2 data-aos="fade-right" data-aos-duration="800">Individual Bites</h2>
+      <div class="bites-wrapper">
+        <div class="bites-category">
+          <i class="fas fa-utensils"></i> À la carte menu — fresh daily
+        </div>
+        <div class="bites-grid" id="itemsContainer"></div>
+      </div>
+      <div class="fine-note"><i class="fas fa-truck-fast"></i> For individual items, packaging & transportation cost will be added.</div>
+
+      <!-- REDESIGNED CUSTOM BOX BUILDER (MODERN, CLEAN, FULLY FUNCTIONAL) -->
+      <div class="custom-box-section" data-aos="fade-up" data-aos-duration="800">
+        <div class="custom-box-title">
+          <i class="fas fa-box-open"></i>
+          <span>Build Your Custom Box</span>
+        </div>
+        <div class="custom-box-subtitle">
+          Mix and match your favorite items — we'll pack them in appropriate boxes
+        </div>
+        
+        <!-- Box Size Cards -->
+        <div class="box-meta-grid">
+          <div class="info-card">
+            <h4><i class="fas fa-cube"></i> Small Box — 250 LKR</h4>
+            <p>8–10 Rolls or Patties · 12 Cutlets · 3–4 Sandwiches or Mini Burgers · 6–8 Wraps</p>
+          </div>
+          <div class="info-card">
+            <h4><i class="fas fa-cubes"></i> Large Box — 300 LKR</h4>
+            <p>18–23 items (mix of different items) — Perfect for family gatherings & parties</p>
+          </div>
+        </div>
+
+        <!-- Delivery & Box Preference -->
+        <div class="delivery-pref-row">
+          <div class="option-group">
+            <label><input type="radio" name="deliveryType" value="delivery" checked> <i class="fas fa-truck"></i> Delivery (Travel Fee: 250 LKR)</label>
+            <label><input type="radio" name="deliveryType" value="pickup"> <i class="fas fa-store"></i> Self Pickup (No Travel Fee)</label>
+          </div>
+          <div class="option-group">
+            <span style="font-weight:600; color:var(--deep-umber); font-family: 'Inter', sans-serif;"><i class="fas fa-sliders-h"></i> Box Preference:</span>
+            <label><input type="radio" name="boxPreference" value="auto" checked> Auto (optimized)</label>
+            <label><input type="radio" name="boxPreference" value="large"> Prefer Large Boxes</label>
+            <label><input type="radio" name="boxPreference" value="small"> Prefer Small Boxes</label>
+          </div>
+        </div>
+
+        <div class="builder-duo">
+          <!-- Left: Item Selector with Search -->
+          <div class="selector-panel">
+            <div class="selector-header">
+              <h3><i class="fas fa-utensils"></i> Select Items</h3>
+              <div class="item-search">
+                <i class="fas fa-search"></i>
+                <input type="text" id="itemFilterInput" placeholder="Search bites...">
+              </div>
+            </div>
+            <div class="selector-grid" id="selectorGrid"></div>
+          </div>
+          <!-- Right: Order Summary -->
+          <div class="summary-panel">
+            <h3><i class="fas fa-shopping-cart"></i> Your Order Summary</h3>
+            <div class="selected-items-list" id="summaryItemsList">
+              <p style="text-align: center; color: var(--text-soft);">No items selected yet</p>
+            </div>
+            <div class="box-breakdown-modern" id="boxBreakdownModern"></div>
+            <div class="cost-line">
+              <span>Box Cost:</span>
+              <span id="boxCostDisplay">0 LKR</span>
+            </div>
+            <div class="cost-line">
+              <span>Travel Fee:</span>
+              <span id="travelFeeDisplay">250 LKR</span>
+            </div>
+            <div class="grand-total-line">
+              <span>Grand Total:</span>
+              <span id="grandTotal">0 LKR</span>
+            </div>
+            <div class="action-buttons">
+              <button class="btn-reset-order" id="resetOrderBtn"><i class="fas fa-trash"></i> Reset</button>
+              <button class="btn-pdf-order" id="pdfOrderBtn"><i class="fas fa-file-pdf"></i> Download PDF</button>
+              <button class="btn-whatsapp-order" id="whatsappOrderBtn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <div class="container">
+      <h2 data-aos="fade-right" data-aos-duration="800">Happy Customers</h2>
+      <div class="testimonial-grid" id="testimonialContainer"></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2 data-aos="fade-right" data-aos-duration="800">Connect & Order</h2>
+      <div class="contact-flex">
+        <div class="contact-details">
+          <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/94705659555" target="_blank" rel="noopener noreferrer">+94 70 565 9555 (WhatsApp)</a></p>
+          <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/the.savory.bar/" target="_blank" rel="noopener noreferrer">@the.savory.bar</a></p>
+          <p><i class="fab fa-tiktok"></i> <a href="https://www.tiktok.com/@the.savory.bar" target="_blank" rel="noopener noreferrer">@the.savory.bar</a></p>
+          <p><i class="fab fa-facebook"></i> <a href="https://www.facebook.com/profile.php?id=61591422501875&sk=directory_links" target="_blank" rel="noopener noreferrer">Facebook Page</a></p>
+        </div>
+        <div class="social-links">
+          <a href="https://www.instagram.com/the.savory.bar/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.tiktok.com/@the.savory.bar/" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <i class="fab fa-tiktok"></i>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61591422501875&sk=directory_links" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="https://wa.me/94705659555" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="whatsapp-large">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2025 THE SAVORY BAR by Anasley — crafted with warmth & flavor</p>
+    <p style="margin-top: 5px;">Savor. Share. Celebrate.</p>
+  </div>
+</footer>
+
+<div class="scroll-top" id="scrollTop">
+  <i class="fas fa-arrow-up"></i>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  // Initialize AOS
+  AOS.init({
+    duration: 800,
+    once: true,
+    offset: 100,
+  });
+
+  // Individual items data (matching menu card)
+  const individualItems = [
+    { name: "Fish Pattie", price: 130, icon: "fa-fish", category: "pattie" },
+    { name: "Fish Roll", price: 130, icon: "fa-fish", category: "roll" },
+    { name: "Chicken Roll", price: 140, icon: "fa-chevron-circle-right", category: "roll" },
+    { name: "Chicken Pattie", price: 140, icon: "fa-pie", category: "pattie" },
+    { name: "Chicken Wrap", price: 170, icon: "fa-leaf", category: "wrap" },
+    { name: "Sandwich", price: 160, icon: "fa-bread-slice", category: "sandwich" },
+    { name: "Mini Burger", price: 180, icon: "fa-hamburger", category: "burger" }
+  ];
+
+  // Add cutlets
+  const cutletItems = [
+    { name: "Egg Cuttlet", price: 140, icon: "fa-egg", category: "cutlet" },
+    { name: "Fish Cuttlet", price: 130, icon: "fa-fish", category: "cutlet" },
+    { name: "Chicken Cuttlet", price: 140, icon: "fa-drumstick-bite", category: "cutlet" }
+  ];
+  
+  const allItems = [...individualItems, ...cutletItems];
+
+  // Cart state
+  let cart = {};
+  let deliveryType = "delivery";
+  let boxPreference = "auto";
+  const TRAVEL_COST = 250;
+  const SMALL_BOX_COST = 250;
+  const LARGE_BOX_COST = 300;
+  let currentFilter = "";
+
+  // Advanced box calculation based on user preference
+  function calculateBoxes() {
+    let totalItems = 0;
+    let categoryCounts = {
+      cutlet: 0,
+      roll: 0,
+      pattie: 0,
+      sandwich: 0,
+      burger: 0,
+      wrap: 0
+    };
+    
+    for (const [name, qty] of Object.entries(cart)) {
+      const item = allItems.find(i => i.name === name);
+      if (item) {
+        totalItems += qty;
+        if (categoryCounts[item.category] !== undefined) {
+          categoryCounts[item.category] += qty;
+        }
+      }
+    }
+
+    if (totalItems === 0) {
+      return { smallBoxes: 0, largeBoxes: 0, totalCost: 0, totalItems: 0 };
+    }
+
+    const smallCap = {
+      cutlet: 12,
+      roll: 8,
+      pattie: 8,
+      sandwich: 3,
+      burger: 3,
+      wrap: 6
+    };
+    const largeCapMixed = 20;
+
+    let smallBoxes = 0;
+    let largeBoxes = 0;
+    let remaining = { ...categoryCounts };
+
+    if (boxPreference === 'small') {
+      for (let cat of Object.keys(remaining)) {
+        while (remaining[cat] >= smallCap[cat]) {
+          smallBoxes++;
+          remaining[cat] -= smallCap[cat];
+        }
+      }
+      let leftoverItems = Object.values(remaining).reduce((a, b) => a + b, 0);
+      if (leftoverItems > 0) {
+        largeBoxes = Math.ceil(leftoverItems / largeCapMixed);
+      }
+    } else if (boxPreference === 'large') {
+      largeBoxes = Math.ceil(totalItems / largeCapMixed);
+      smallBoxes = 0;
+    } else { // auto
+      for (let cat of Object.keys(remaining)) {
+        while (remaining[cat] >= smallCap[cat] && (remaining[cat] % smallCap[cat] <= 4 || remaining[cat] >= smallCap[cat] * 2)) {
+          smallBoxes++;
+          remaining[cat] -= smallCap[cat];
+        }
+      }
+      let leftoverItems = Object.values(remaining).reduce((a, b) => a + b, 0);
+      if (leftoverItems > 0) {
+        largeBoxes = Math.ceil(leftoverItems / largeCapMixed);
+      }
+      if (smallBoxes === 0 && largeBoxes === 0 && totalItems > 0) {
+        if (totalItems <= 12) smallBoxes = 1;
+        else largeBoxes = 1;
+      }
+    }
+
+    const totalCost = (smallBoxes * SMALL_BOX_COST) + (largeBoxes * LARGE_BOX_COST);
+    return { smallBoxes, largeBoxes, totalCost, totalItems };
+  }
+
+  function renderSelectorGrid() {
+    const container = document.getElementById('selectorGrid');
+    if (!container) return;
+    let filtered = allItems.filter(i => i.name.toLowerCase().includes(currentFilter.toLowerCase()));
+    container.innerHTML = '';
+    filtered.forEach(item => {
+      const quantity = cart[item.name] || 0;
+      const div = document.createElement('div');
+      div.className = `selector-item ${quantity > 0 ? 'selected' : ''}`;
+      div.innerHTML = `
+        <div class="item-info">
+          <div class="item-name"><i class="fas ${item.icon}"></i> ${item.name}</div>
+          <div class="item-price">${item.price} LKR</div>
+        </div>
+        <div class="item-quantity">
+          <button class="qty-btn" data-action="decrease" data-name="${item.name}">-</button>
+          <span class="qty-value">${quantity}</span>
+          <button class="qty-btn" data-action="increase" data-name="${item.name}">+</button>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+
+    document.querySelectorAll('.qty-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const action = btn.getAttribute('data-action');
+        const name = btn.getAttribute('data-name');
+        if (action === 'increase') {
+          cart[name] = (cart[name] || 0) + 1;
+        } else if (action === 'decrease' && cart[name] > 0) {
+          cart[name]--;
+          if (cart[name] === 0) delete cart[name];
+        }
+        updateOrderSummary();
+        renderSelectorGrid();
+      });
+    });
+  }
+
+  function updateOrderSummary() {
+    const summaryContainer = document.getElementById('summaryItemsList');
+    const grandTotalSpan = document.getElementById('grandTotal');
+    const boxCostDisplay = document.getElementById('boxCostDisplay');
+    const travelFeeDisplay = document.getElementById('travelFeeDisplay');
+    const boxBreakdown = document.getElementById('boxBreakdownModern');
+    
+    let itemsSubtotal = 0;
+    let summaryHtml = '';
+    
+    for (const [name, qty] of Object.entries(cart)) {
+      const item = allItems.find(i => i.name === name);
+      const itemTotal = item.price * qty;
+      itemsSubtotal += itemTotal;
+      summaryHtml += `<div class="cart-item-row"><span>${qty}x ${name}</span><span>${itemTotal} LKR</span></div>`;
+    }
+    
+    if (Object.keys(cart).length === 0) {
+      summaryHtml = '<p style="text-align: center; color: var(--text-soft);">No items selected yet</p>';
+    }
+    
+    summaryContainer.innerHTML = summaryHtml;
+    
+    const { smallBoxes, largeBoxes, totalCost, totalItems } = calculateBoxes();
+    const travelFee = deliveryType === "delivery" ? TRAVEL_COST : 0;
+    const grandTotal = itemsSubtotal + totalCost + travelFee;
+    
+    boxCostDisplay.textContent = totalCost + ' LKR';
+    travelFeeDisplay.textContent = travelFee + ' LKR';
+    grandTotalSpan.textContent = grandTotal + ' LKR';
+    
+    let breakdownHtml = '';
+    if (smallBoxes > 0 || largeBoxes > 0) {
+      breakdownHtml = `<div class="box-line"><strong>Box Breakdown:</strong></div>`;
+      if (smallBoxes > 0) breakdownHtml += `<div class="box-line"><span>Small Box × ${smallBoxes}</span><span>${smallBoxes * SMALL_BOX_COST} LKR</span></div>`;
+      if (largeBoxes > 0) breakdownHtml += `<div class="box-line"><span>Large Box × ${largeBoxes}</span><span>${largeBoxes * LARGE_BOX_COST} LKR</span></div>`;
+      breakdownHtml += `<div class="box-line" style="border-top:1px solid var(--border-light); margin-top:6px; padding-top:8px;"><span>Total Items:</span><span>${totalItems} items</span></div>`;
+    } else {
+      breakdownHtml = '<div class="box-line"><span>No boxes selected</span></div>';
+    }
+    boxBreakdown.innerHTML = breakdownHtml;
+  }
+
+  function resetOrder() {
+    cart = {};
+    updateOrderSummary();
+    renderSelectorGrid();
+  }
+
+  function generatePDF(){
+    if(Object.keys(cart).length===0){ alert('Please select at least one item'); return; }
+    const { smallBoxes, largeBoxes, totalCost, totalItems } = calculateBoxes();
+    const travelFee = deliveryType==="delivery"?TRAVEL_COST:0;
+    let itemsSubtotal=0, itemsRows='';
+    for(const [name,qty] of Object.entries(cart)){
+      const it=allItems.find(i=>i.name===name);
+      if(it){ itemsSubtotal+=it.price*qty; itemsRows+=`<tr><td>${qty}x ${name}</td><td>${it.price} LKR</td><td>${it.price*qty} LKR</td></tr>`; }
+    }
+    const grandTotal=itemsSubtotal+totalCost+travelFee;
+    const currentDate=new Date().toLocaleString();
+    const deliveryText = deliveryType==="delivery" ? `Delivery (Travel Fee): ${travelFee} LKR` : "Self Pickup (No Travel Fee)";
+    const boxDetails = [];
+    if(smallBoxes>0) boxDetails.push(`Small Box × ${smallBoxes} = ${smallBoxes*SMALL_BOX_COST} LKR`);
+    if(largeBoxes>0) boxDetails.push(`Large Box × ${largeBoxes} = ${largeBoxes*LARGE_BOX_COST} LKR`);
+    const boxDetailsStr = boxDetails.join(', ');
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+      <head><title>The Savory Bar - Order Summary</title>
+      <style>
+        body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; background: white; color: #2C1810; }
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #C26A2C; }
+        .logo { font-size: 28px; font-weight: bold; color: #8B4513; font-family: 'Playfair Display', serif; }
+        .title { font-size: 24px; color: #C26A2C; margin: 20px 0 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #E8DCC8; }
+        th { background: #C26A2C; color: white; }
+        .section-title { font-size: 18px; font-weight: bold; margin: 20px 0 10px 0; color: #8B4513; border-left: 4px solid #C26A2C; padding-left: 12px; }
+        .other-item { margin: 8px 0; }
+        .total { text-align: right; margin-top: 20px; padding-top: 10px; border-top: 2px solid #C26A2C; font-size: 20px; font-weight: bold; color: #C26A2C; }
+        .footer { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #E8DCC8; font-size: 12px; color: #5C3D2E; }
+      </style>
+      </head>
+      <body>
+        <div class="header"><div class="logo">THE SAVORY BAR<br><small>by Anasley</small></div><div class="title">ORDER SUMMARY</div><p>Date: ${currentDate}</p></div>
+        <div class="section-title">Ordered Items</div>
+        <table><thead><tr><th>Item</th><th>Unit Price</th><th>Total</th></tr></thead><tbody>${itemsRows}</tbody></table>
+        <div class="section-title">Other</div>
+        <div class="other-item">Packaging (Boxes): ${boxDetailsStr || 'None'}</div>
+        <div class="other-item">Transportation: ${deliveryText}</div>
+        <div class="total">Grand Total: ${grandTotal} LKR</div>
+        <div class="footer"><p>Thank you for ordering from The Savory Bar!<br>WhatsApp: +94 70 565 9555 | IG/TikTok: @the.savory.bar</p></div>
+        <script>window.onload = function() { window.print(); setTimeout(function() { window.close(); }, 500); }<\/script>
+      </body>
+      </html>
+    `);
+    printWindow.document.close();
+  }
+
+  function sendWhatsAppOrder() {
+    if (Object.keys(cart).length === 0) {
+      alert('Please select at least one item to place an order!');
+      return;
+    }
+    
+    const { smallBoxes, largeBoxes, totalCost, totalItems } = calculateBoxes();
+    const travelFee = deliveryType === "delivery" ? TRAVEL_COST : 0;
+    
+    let itemsSubtotal = 0;
+    let orderMessage = "CUSTOM BOX ORDER%0A%0A";
+    orderMessage += "Items Ordered:%0A";
+    
+    for (const [name, qty] of Object.entries(cart)) {
+      const item = allItems.find(i => i.name === name);
+      const itemTotal = item.price * qty;
+      itemsSubtotal += itemTotal;
+      orderMessage += `• ${qty}x ${name} - ${itemTotal} LKR%0A`;
+    }
+    
+    orderMessage += `%0ABox Breakdown (Preference: ${boxPreference}):%0A`;
+    if (smallBoxes > 0) orderMessage += `• Small Box × ${smallBoxes} - ${smallBoxes * SMALL_BOX_COST} LKR%0A`;
+    if (largeBoxes > 0) orderMessage += `• Large Box × ${largeBoxes} - ${largeBoxes * LARGE_BOX_COST} LKR%0A`;
+    orderMessage += `Total Items: ${totalItems} items%0A`;
+    
+    if (deliveryType === "delivery") {
+      orderMessage += `Travel Fee: ${TRAVEL_COST} LKR (Delivery)%0A`;
+    } else {
+      orderMessage += `Pickup: Self pickup (No travel fee)%0A`;
+    }
+    
+    orderMessage += `────────────────%0A`;
+    orderMessage += `Grand Total: ${itemsSubtotal + totalCost + travelFee} LKR%0A%0A`;
+    orderMessage += `Delivery Location: %0A`;
+    orderMessage += `Delivery Date & Time: %0A`;
+    orderMessage += `Contact Number: %0A%0A`;
+    orderMessage += `Thank you!`;
+    
+    const whatsappUrl = `https://wa.me/94705659555?text=${orderMessage}`;
+    window.open(whatsappUrl, '_blank');
+  }
+
+  function initDeliveryAndBoxOptions() {
+    const deliveryRadios = document.querySelectorAll('input[name="deliveryType"]');
+    deliveryRadios.forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        deliveryType = e.target.value;
+        updateOrderSummary();
+      });
+    });
+
+    const boxPreferenceRadios = document.querySelectorAll('input[name="boxPreference"]');
+    boxPreferenceRadios.forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        boxPreference = e.target.value;
+        updateOrderSummary();
+      });
+    });
+    
+    const filterInput = document.getElementById('itemFilterInput');
+    if(filterInput) {
+      filterInput.addEventListener('input', (e) => {
+        currentFilter = e.target.value;
+        renderSelectorGrid();
+      });
+    }
+  }
+
+  function initTheme() {
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeToggle.innerHTML = '<i class="fas fa-sun"></i><span>Light Mode</span>';
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      themeToggle.innerHTML = '<i class="fas fa-moon"></i><span>Dark Mode</span>';
+    }
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i><span>Dark Mode</span>';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i><span>Light Mode</span>';
+      }
+    });
+  }
+
+  // Platters data
+  const plattersData = [
+    { name: "The Wrap & Roll Platter", desc: "A modern party favorite", price: "3,500 LKR", serves: "Serves 6–8 people", items: ["6 Chicken Wraps", "6 Chicken Rolls", "6 Mini Burgers"] },
+    { name: "The Classic Bite Box", desc: "Evening tea snack", price: "3,650 LKR", serves: "Serves 5–6 people", items: ["4 Sandwiches", "4 Chicken Wraps", "4 Chicken Patties", "4 Chicken Rolls", "4 Mini Burgers"] },
+    { name: "The Sandwich Social", desc: "Ideal for office meetings", price: "4,650 LKR", serves: "Serves 8–10 people", items: ["12 Sandwiches", "12 Chicken Patties", "12 Chicken Rolls"] },
+    { name: "The Executive Savory Platter", desc: "Perfect for corporate events", price: "6,700 LKR", serves: "Serves 12–14 people", items: ["10 Mini Burgers", "10 Chicken Wraps", "10 Sandwiches", "10 Chicken Patties"] },
+    { name: "The Party Crave Box", desc: "Best for birthdays", price: "7,150 LKR", serves: "Serves 12–14 people", items: ["12 Sandwiches", "12 Chicken Patties", "12 Chicken Rolls", "12 Mini Burgers"] },
+    { name: "The Family Feast Box", desc: "Made for larger groups", price: "7,950 LKR", serves: "Serves 15–18 people", items: ["10 Mini Burgers", "10 Chicken Wraps", "10 Sandwiches", "10 Chicken Patties", "10 Chicken Rolls"] }
+  ];
+
+  const testimonials = [
+    { text: "tbh all the items are really tasty and that chicken wrap is the most delicious one. All loved it. Good luck with your business!", name: "Yasitha" },
+    { text: "Okkoma items tika rasaii, maarama quality and fresh! Everything was perfect. Highly recommended for gatherings.", name: "Chinthani" },
+    { text: "The wraps & platters exceeded expectations! Authentic flavors & super fresh. Will order again!", name: "Sanduni" }
+  ];
+
+  // Gallery images with proper Unsplash food photos as fallbacks
+  const galleryImages = [
+    { caption: "Grilled Chicken Wrap", url: "images/wrap.jpg", fallback: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=600&h=400&fit=crop" },
+    { caption: "Mini Burgers Platter", url: "images/burger.jpg", fallback: "https://images.unsplash.com/photo-1550317138-10000687a72b?w=600&h=400&fit=crop" },
+    { caption: "Fresh Chicken Sandwiches", url: "images/sandwich.jpg", fallback: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&h=400&fit=crop" },
+    { caption: "Fresh Chicken Rolls", url: "images/rolls.jpg", fallback: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=600&h=400&fit=crop" },
+    { caption: "Crispy Chicken Patties", url: "images/patis.jpg", fallback: "https://images.unsplash.com/photo-1432139509613-5c4255a1d1a2?w=600&h=400&fit=crop" },
+    { caption: "All in One", url: "images/foods.jpg", fallback: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop" },
+    { caption: "Signature Platters", url: "images/platter.jpg", fallback: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=400&fit=crop" },
+    { caption: "Packed Platter", url: "images/platterbox.jpg", fallback: "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=600&h=400&fit=crop" }
+  ];
+
+  function renderPlatters() {
+    const grid = document.getElementById('plattersGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    plattersData.forEach((p, idx) => {
+      const card = document.createElement('div');
+      card.className = 'platter-card';
+      card.setAttribute('data-aos', 'fade-up');
+      card.setAttribute('data-aos-duration', '600');
+      card.innerHTML = `
+        <div class="platter-title">${p.name}</div>
+        <div class="price">${p.price}</div>
+        <div class="serves">${p.serves}</div>
+        <ul class="item-list">
+          ${p.items.map(it => `<li><i class="fas fa-circle" style="font-size: 0.45rem;"></i> ${it}</li>`).join('')}
+        </ul>
+        <div style="margin-top: 10px; font-size:0.85rem; color:var(--text-soft); font-style: italic;">${p.desc}</div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function renderIndividualItems() {
+    const container = document.getElementById('itemsContainer');
+    if (!container) return;
+    container.innerHTML = '';
+    allItems.forEach((item, idx) => {
+      let iconHtml = `<i class="fas ${item.icon}"></i>`;
+      if (item.name === "Chicken Wrap") iconHtml = `<i class="fas fa-leaf"></i>`;
+      if (item.name === "Mini Burger") iconHtml = `<i class="fas fa-hamburger"></i>`;
+      const card = document.createElement('div');
+      card.className = 'bite-card';
+      card.setAttribute('data-aos', 'fade-up');
+      card.setAttribute('data-aos-duration', '400');
+      card.innerHTML = `
+        <div class="bite-name">${iconHtml} <span>${item.name}</span></div>
+        <div class="bite-price">${item.price} LKR</div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  function renderTestimonials() {
+    const tContainer = document.getElementById('testimonialContainer');
+    if (!tContainer) return;
+    tContainer.innerHTML = '';
+    testimonials.forEach((t, idx) => {
+      const card = document.createElement('div');
+      card.className = 'testimonial-card';
+      card.setAttribute('data-aos', 'fade-up');
+      card.innerHTML = `
+        <i class="fas fa-quote-left" style="color:var(--terracotta); font-size:1.4rem;"></i>
+        <p style="margin: 12px 0 6px;">"${t.text}"</p>
+        <div class="customer-name">— ${t.name}</div>
+        <div style="margin-top: 8px; color: #D78E44;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+      `;
+      tContainer.appendChild(card);
+    });
+  }
+
+  function renderGallery() {
+    const galleryContainer = document.getElementById('galleryContainer');
+    if (!galleryContainer) return;
+    galleryContainer.innerHTML = '';
+    galleryImages.forEach((img, idx) => {
+      const div = document.createElement('div');
+      div.className = 'gallery-item';
+      div.setAttribute('data-aos', 'fade-up');
+      div.innerHTML = `
+        <img class="gallery-img" src="${img.url}" alt="${img.caption}" loading="lazy" onerror="this.onerror=null; this.src='${img.fallback}';">
+        <div class="gallery-caption">${img.caption}</div>
+      `;
+      galleryContainer.appendChild(div);
+    });
+  }
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // Scroll to top button
+  const scrollTopBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      scrollTopBtn.classList.add('show');
+    } else {
+      scrollTopBtn.classList.remove('show');
+    }
+  });
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Custom cursor
+  const cursor = document.querySelector('.custom-cursor');
+  if (cursor) {
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      cursor.style.opacity = '0.6';
+    });
+    document.addEventListener('mouseleave', () => {
+      cursor.style.opacity = '0';
+    });
+    document.querySelectorAll('a, button, .btn, .platter-card, .bite-card, .gallery-item').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+    });
+  }
+
+  // Mobile menu
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const navLinksEl = document.getElementById('navLinks');
+  if (mobileBtn && navLinksEl) {
+    mobileBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navLinksEl.classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => navLinksEl.classList.remove('active'));
+    });
+    document.addEventListener('click', (e) => {
+      if (!navLinksEl.contains(e.target) && !mobileBtn.contains(e.target) && navLinksEl.classList.contains('active')) {
+        navLinksEl.classList.remove('active');
+      }
+    });
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === "#" || href === "") return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Initialize custom box event listeners
+  document.getElementById('resetOrderBtn')?.addEventListener('click', resetOrder);
+  document.getElementById('whatsappOrderBtn')?.addEventListener('click', sendWhatsAppOrder);
+  document.getElementById('pdfOrderBtn')?.addEventListener('click', generatePDF);
+  initDeliveryAndBoxOptions();
+
+  window.addEventListener('DOMContentLoaded', () => {
+    renderPlatters();
+    renderIndividualItems();
+    renderTestimonials();
+    renderGallery();
+    renderSelectorGrid();
+    updateOrderSummary();
+    initTheme();
+    AOS.refresh();
+  });
+</script>
+</body>
+</html>
