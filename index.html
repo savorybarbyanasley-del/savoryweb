@@ -1289,25 +1289,19 @@
       font-weight: 600;
     }
 
-    /* FLOWER BOUQUET POPUP ANIMATION (slide from right) */
+    /* ===== FLOWER BOUQUET POPUP (PURE IMAGE, NO BACKGROUND, SLIDE FROM RIGHT) ===== */
     .flower-bouquet-popup {
       position: fixed;
-      bottom: 100px;
-      right: 20px;
-      width: 220px;
-      background: var(--card-bg);
-      border-radius: 32px;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--terracotta);
-      padding: 16px 16px 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transform: translateX(calc(100% + 40px));
-      opacity: 0;
-      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
+      bottom: 120px;
+      right: 30px;
+      width: 280px;
+      height: auto;
       z-index: 50;
+      transform: translateX(calc(100% + 60px));
+      opacity: 0;
+      transition: transform 0.7s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.5s ease;
       pointer-events: none;
+      filter: drop-shadow(0 12px 35px rgba(0,0,0,0.25));
     }
     .flower-bouquet-popup.show {
       transform: translateX(0);
@@ -1316,40 +1310,64 @@
     }
     .flower-bouquet-popup img {
       width: 100%;
-      max-height: 150px;
+      height: auto;
+      max-height: 340px;
       object-fit: contain;
-      border-radius: 20px;
-      background: #f9f1e7;
-      padding: 4px;
-      margin-bottom: 6px;
+      display: block;
+      border-radius: 0;
+      background: transparent;
+      padding: 0;
     }
-    .flower-bouquet-popup .bouquet-name {
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--deep-umber);
-      font-family: 'Inter', sans-serif;
-    }
-    .flower-bouquet-popup .bouquet-price {
-      font-weight: 600;
-      color: var(--terracotta);
-      font-family: 'Inter', sans-serif;
-    }
-    .flower-bouquet-popup .remove-bouquet {
-      margin-top: 6px;
-      background: rgba(194, 106, 44, 0.12);
+    /* Remove button overlay on the image itself */
+    .flower-bouquet-popup .remove-bouquet-overlay {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(6px);
       border: none;
-      border-radius: 30px;
-      padding: 4px 14px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--terracotta);
-      cursor: pointer;
-      transition: 0.2s;
-      font-family: 'Inter', sans-serif;
-    }
-    .flower-bouquet-popup .remove-bouquet:hover {
-      background: var(--terracotta);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
       color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.2s;
+    }
+    .flower-bouquet-popup:hover .remove-bouquet-overlay {
+      opacity: 1;
+    }
+    .flower-bouquet-popup .remove-bouquet-overlay:hover {
+      background: #e74c3c;
+      transform: scale(1.1);
+    }
+    /* small label below image (optional, but we keep it minimal) */
+    .flower-bouquet-popup .bouquet-label {
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      margin-top: 4px;
+      font-family: 'Inter', sans-serif;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(4px);
+      padding: 4px 12px;
+      border-radius: 30px;
+      display: inline-block;
+      margin-left: auto;
+      margin-right: auto;
+      width: fit-content;
+      opacity: 0.8;
+    }
+    [data-theme="dark"] .flower-bouquet-popup .bouquet-label {
+      background: rgba(0,0,0,0.6);
+      color: #e0d6c8;
     }
 
     @media (max-width: 800px) {
@@ -1383,11 +1401,26 @@
       .scroll-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
       .selector-grid { grid-template-columns: 1fr; }
       .action-buttons { flex-direction: column; }
-      .flower-bouquet-popup { width: 180px; bottom: 80px; right: 10px; }
+      .flower-bouquet-popup {
+        width: 200px;
+        bottom: 100px;
+        right: 15px;
+      }
+      .flower-bouquet-popup img {
+        max-height: 240px;
+      }
     }
     @media (max-width: 540px) {
       .platters-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr; }
+      .flower-bouquet-popup {
+        width: 160px;
+        bottom: 80px;
+        right: 10px;
+      }
+      .flower-bouquet-popup img {
+        max-height: 190px;
+      }
     }
   </style>
 </head>
@@ -1594,12 +1627,12 @@
   <i class="fas fa-arrow-up"></i>
 </div>
 
-<!-- FLOWER BOUQUET POPUP (floating) -->
+<!-- FLOWER BOUQUET POPUP - PURE IMAGE, SLIDE FROM RIGHT -->
 <div class="flower-bouquet-popup" id="flowerPopup">
-  <img src="images/flowerbo.png" alt="Flower Bouquet" id="flowerPopupImg" onerror="this.src='https://placehold.co/200x150/edb153/ffffff?text=🌺+Bouquet'">
-  <div class="bouquet-name">🌸 Flower Bouquet</div>
-  <div class="bouquet-price">6,500 LKR</div>
-  <button class="remove-bouquet" id="removeBouquetBtn"><i class="fas fa-times"></i> Remove</button>
+  <img src="images/flowerbo.png" alt="Flower Bouquet" id="flowerPopupImg" onerror="this.src='https://placehold.co/280x340/edb153/ffffff?text=🌺+Bouquet'">
+  <button class="remove-bouquet-overlay" id="removeBouquetBtn" aria-label="Remove bouquet">
+    <i class="fas fa-times"></i>
+  </button>
 </div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -1636,9 +1669,8 @@
   const SMALL_BOX_COST = 250;
   const LARGE_BOX_COST = 300;
   let currentFilter = "";
-  let flowerAdded = false; // track flower bouquet
+  let flowerAdded = false;
 
-  // Advanced box calculation
   function calculateBoxes() {
     let totalItems = 0;
     let categoryCounts = { cutlet:0, roll:0, pattie:0, sandwich:0, burger:0, wrap:0 };
@@ -1663,7 +1695,7 @@
     } else if (boxPreference === 'large') {
       largeBoxes = Math.ceil(totalItems / largeCapMixed);
       smallBoxes = 0;
-    } else { // auto
+    } else {
       for (let cat of Object.keys(remaining)) {
         while (remaining[cat] >= smallCap[cat] && (remaining[cat] % smallCap[cat] <= 4 || remaining[cat] >= smallCap[cat] * 2)) {
           smallBoxes++;
@@ -1772,7 +1804,6 @@
     } else {
       popup.classList.remove('show');
     }
-    // update toggle button
     const toggleBtn = document.getElementById('flowerToggleBtn');
     if (flowerAdded) {
       toggleBtn.innerHTML = '<i class="fas fa-check-circle"></i> Added';
@@ -2020,14 +2051,12 @@
     });
   }
 
-  // navbar scroll effect
   window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) navbar.classList.add('scrolled');
     else navbar.classList.remove('scrolled');
   });
 
-  // scroll top
   const scrollTopBtn = document.getElementById('scrollTop');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 300) scrollTopBtn.classList.add('show');
@@ -2035,7 +2064,6 @@
   });
   scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-  // custom cursor
   const cursor = document.querySelector('.custom-cursor');
   if (cursor) {
     document.addEventListener('mousemove', (e) => {
@@ -2050,7 +2078,6 @@
     });
   }
 
-  // mobile menu
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const navLinksEl = document.getElementById('navLinks');
   if (mobileBtn && navLinksEl) {
@@ -2063,7 +2090,6 @@
     });
   }
 
-  // smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
@@ -2085,7 +2111,6 @@
     }
   });
 
-  // init buttons
   document.getElementById('resetOrderBtn')?.addEventListener('click', resetOrder);
   document.getElementById('whatsappOrderBtn')?.addEventListener('click', sendWhatsAppOrder);
   document.getElementById('pdfOrderBtn')?.addEventListener('click', generatePDF);
