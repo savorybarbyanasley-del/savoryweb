@@ -16,7 +16,6 @@
       box-sizing: border-box;
     }
 
-    /* Light theme - Matching Menu Card Colors */
     :root {
       --bg-cream: #FDF5E6;
       --terracotta: #C26A2C;
@@ -37,7 +36,6 @@
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Dark theme - Warm Dark Variation with requested business colors */
     [data-theme="dark"] {
       --bg-cream: #000000;
       --terracotta: #edb153;
@@ -69,7 +67,6 @@
       letter-spacing: 0.01em;
     }
 
-    /* Custom cursor */
     .custom-cursor {
       width: 12px;
       height: 12px;
@@ -105,7 +102,6 @@
       border-bottom: none;
     }
 
-    /* Background decorative elements */
     section::before {
       content: '';
       position: absolute;
@@ -119,7 +115,6 @@
       z-index: 0;
     }
 
-    /* Logo Styles - kept beautiful */
     .logo {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
@@ -180,7 +175,6 @@
       width: 100%;
     }
 
-    /* Theme Toggle Button */
     .theme-toggle {
       background: var(--card-bg);
       border: 1px solid var(--border-light);
@@ -210,7 +204,6 @@
       transform: rotate(15deg);
     }
 
-    /* Navbar */
     .navbar {
       position: sticky;
       top: 0;
@@ -281,7 +274,6 @@
       transform: scale(1.1);
     }
 
-    /* Hero */
     .hero {
       padding: 80px 0 80px;
       text-align: center;
@@ -411,7 +403,7 @@
       border-color: #A0522D;
     }
 
-    /* ========== REDESIGNED CUSTOM BOX BUILDER (MODERN, CLEAN, ALIGNED) ========== */
+    /* ========== CUSTOM BOX BUILDER ========== */
     .custom-box-section {
       background: var(--card-bg);
       border-radius: 40px;
@@ -1191,7 +1183,6 @@
       transform: translateY(0);
     }
 
-    /* Scroll to top button */
     .scroll-top {
       position: fixed;
       bottom: 30px;
@@ -1220,7 +1211,6 @@
       background: #d4953a;
     }
 
-    /* Custom Scrollbars (only for summary list, not selector) */
     .selected-items-list {
       scrollbar-width: thin;
       scrollbar-color: var(--terracotta) var(--bites-bg);
@@ -1235,6 +1225,131 @@
     .selected-items-list::-webkit-scrollbar-thumb {
       background: var(--terracotta);
       border-radius: 999px;
+    }
+
+    /* ===== FLOWER BOUQUET TOGGLE ===== */
+    .flower-toggle-area {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bites-bg);
+      border-radius: 28px;
+      padding: 0.8rem 1.8rem;
+      margin: 1rem 0 0.5rem;
+      border: 1px solid var(--border-light);
+      transition: all 0.3s ease;
+    }
+    .flower-toggle-area:hover {
+      border-color: var(--terracotta);
+    }
+    .flower-toggle-area .label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      color: var(--deep-umber);
+    }
+    .flower-toggle-area .label i {
+      color: var(--terracotta);
+      font-size: 1.2rem;
+    }
+    .flower-toggle-area .toggle-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border-light);
+      border-radius: 40px;
+      padding: 6px 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-soft);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .flower-toggle-area .toggle-btn.active {
+      background: var(--terracotta);
+      color: white;
+      border-color: var(--terracotta);
+    }
+    .flower-toggle-area .toggle-btn.active i {
+      color: white;
+    }
+    .flower-toggle-area .toggle-btn:hover {
+      transform: translateY(-2px);
+    }
+    .flower-price-badge {
+      background: var(--terracotta);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* FLOWER BOUQUET POPUP ANIMATION (slide from right) */
+    .flower-bouquet-popup {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      width: 220px;
+      background: var(--card-bg);
+      border-radius: 32px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--terracotta);
+      padding: 16px 16px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: translateX(calc(100% + 40px));
+      opacity: 0;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
+      z-index: 50;
+      pointer-events: none;
+    }
+    .flower-bouquet-popup.show {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .flower-bouquet-popup img {
+      width: 100%;
+      max-height: 150px;
+      object-fit: contain;
+      border-radius: 20px;
+      background: #f9f1e7;
+      padding: 4px;
+      margin-bottom: 6px;
+    }
+    .flower-bouquet-popup .bouquet-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--deep-umber);
+      font-family: 'Inter', sans-serif;
+    }
+    .flower-bouquet-popup .bouquet-price {
+      font-weight: 600;
+      color: var(--terracotta);
+      font-family: 'Inter', sans-serif;
+    }
+    .flower-bouquet-popup .remove-bouquet {
+      margin-top: 6px;
+      background: rgba(194, 106, 44, 0.12);
+      border: none;
+      border-radius: 30px;
+      padding: 4px 14px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--terracotta);
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .flower-bouquet-popup .remove-bouquet:hover {
+      background: var(--terracotta);
+      color: white;
     }
 
     @media (max-width: 800px) {
@@ -1268,6 +1383,7 @@
       .scroll-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
       .selector-grid { grid-template-columns: 1fr; }
       .action-buttons { flex-direction: column; }
+      .flower-bouquet-popup { width: 180px; bottom: 80px; right: 10px; }
     }
     @media (max-width: 540px) {
       .platters-grid { grid-template-columns: 1fr; }
@@ -1342,7 +1458,7 @@
       </div>
       <div class="fine-note"><i class="fas fa-truck-fast"></i> For individual items, packaging & transportation cost will be added.</div>
 
-      <!-- REDESIGNED CUSTOM BOX BUILDER (MODERN, CLEAN, FULLY FUNCTIONAL) -->
+      <!-- CUSTOM BOX BUILDER -->
       <div class="custom-box-section" data-aos="fade-up" data-aos-duration="800">
         <div class="custom-box-title">
           <i class="fas fa-box-open"></i>
@@ -1378,8 +1494,14 @@
           </div>
         </div>
 
+        <!-- FLOWER BOUQUET TOGGLE (NEW) -->
+        <div class="flower-toggle-area">
+          <span class="label"><i class="fas fa-seedling"></i> Add Flower Bouquet <span class="flower-price-badge">+6500 LKR</span></span>
+          <button class="toggle-btn" id="flowerToggleBtn"><i class="fas fa-plus-circle"></i> Add</button>
+        </div>
+
         <div class="builder-duo">
-          <!-- Left: Item Selector with Search -->
+          <!-- Left: Item Selector -->
           <div class="selector-panel">
             <div class="selector-header">
               <h3><i class="fas fa-utensils"></i> Select Items</h3>
@@ -1404,6 +1526,11 @@
             <div class="cost-line">
               <span>Travel Fee:</span>
               <span id="travelFeeDisplay">250 LKR</span>
+            </div>
+            <!-- Flower bouquet line -->
+            <div class="cost-line" id="flowerCostLine" style="display:none;">
+              <span><i class="fas fa-seedling"></i> Flower Bouquet:</span>
+              <span id="flowerCostDisplay">6500 LKR</span>
             </div>
             <div class="grand-total-line">
               <span>Grand Total:</span>
@@ -1467,6 +1594,14 @@
   <i class="fas fa-arrow-up"></i>
 </div>
 
+<!-- FLOWER BOUQUET POPUP (floating) -->
+<div class="flower-bouquet-popup" id="flowerPopup">
+  <img src="images/flowerbo.png" alt="Flower Bouquet" id="flowerPopupImg" onerror="this.src='https://placehold.co/200x150/edb153/ffffff?text=🌺+Bouquet'">
+  <div class="bouquet-name">🌸 Flower Bouquet</div>
+  <div class="bouquet-price">6,500 LKR</div>
+  <button class="remove-bouquet" id="removeBouquetBtn"><i class="fas fa-times"></i> Remove</button>
+</div>
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   // Initialize AOS
@@ -1476,7 +1611,7 @@
     offset: 100,
   });
 
-  // Individual items data (matching menu card)
+  // Individual items data
   const individualItems = [
     { name: "Fish Pattie", price: 130, icon: "fa-fish", category: "pattie" },
     { name: "Fish Roll", price: 130, icon: "fa-fish", category: "roll" },
@@ -1486,14 +1621,11 @@
     { name: "Sandwich", price: 160, icon: "fa-bread-slice", category: "sandwich" },
     { name: "Mini Burger", price: 180, icon: "fa-hamburger", category: "burger" }
   ];
-
-  // Add cutlets
   const cutletItems = [
     { name: "Egg Cuttlet", price: 140, icon: "fa-egg", category: "cutlet" },
     { name: "Fish Cuttlet", price: 130, icon: "fa-fish", category: "cutlet" },
     { name: "Chicken Cuttlet", price: 140, icon: "fa-drumstick-bite", category: "cutlet" }
   ];
-  
   const allItems = [...individualItems, ...cutletItems];
 
   // Cart state
@@ -1504,58 +1636,30 @@
   const SMALL_BOX_COST = 250;
   const LARGE_BOX_COST = 300;
   let currentFilter = "";
+  let flowerAdded = false; // track flower bouquet
 
-  // Advanced box calculation based on user preference
+  // Advanced box calculation
   function calculateBoxes() {
     let totalItems = 0;
-    let categoryCounts = {
-      cutlet: 0,
-      roll: 0,
-      pattie: 0,
-      sandwich: 0,
-      burger: 0,
-      wrap: 0
-    };
-    
+    let categoryCounts = { cutlet:0, roll:0, pattie:0, sandwich:0, burger:0, wrap:0 };
     for (const [name, qty] of Object.entries(cart)) {
       const item = allItems.find(i => i.name === name);
       if (item) {
         totalItems += qty;
-        if (categoryCounts[item.category] !== undefined) {
-          categoryCounts[item.category] += qty;
-        }
+        if (categoryCounts[item.category] !== undefined) categoryCounts[item.category] += qty;
       }
     }
-
-    if (totalItems === 0) {
-      return { smallBoxes: 0, largeBoxes: 0, totalCost: 0, totalItems: 0 };
-    }
-
-    const smallCap = {
-      cutlet: 12,
-      roll: 8,
-      pattie: 8,
-      sandwich: 3,
-      burger: 3,
-      wrap: 6
-    };
+    if (totalItems === 0) return { smallBoxes:0, largeBoxes:0, totalCost:0, totalItems:0 };
+    const smallCap = { cutlet:12, roll:8, pattie:8, sandwich:3, burger:3, wrap:6 };
     const largeCapMixed = 20;
-
-    let smallBoxes = 0;
-    let largeBoxes = 0;
+    let smallBoxes = 0, largeBoxes = 0;
     let remaining = { ...categoryCounts };
-
     if (boxPreference === 'small') {
       for (let cat of Object.keys(remaining)) {
-        while (remaining[cat] >= smallCap[cat]) {
-          smallBoxes++;
-          remaining[cat] -= smallCap[cat];
-        }
+        while (remaining[cat] >= smallCap[cat]) { smallBoxes++; remaining[cat] -= smallCap[cat]; }
       }
       let leftoverItems = Object.values(remaining).reduce((a, b) => a + b, 0);
-      if (leftoverItems > 0) {
-        largeBoxes = Math.ceil(leftoverItems / largeCapMixed);
-      }
+      if (leftoverItems > 0) largeBoxes = Math.ceil(leftoverItems / largeCapMixed);
     } else if (boxPreference === 'large') {
       largeBoxes = Math.ceil(totalItems / largeCapMixed);
       smallBoxes = 0;
@@ -1567,15 +1671,12 @@
         }
       }
       let leftoverItems = Object.values(remaining).reduce((a, b) => a + b, 0);
-      if (leftoverItems > 0) {
-        largeBoxes = Math.ceil(leftoverItems / largeCapMixed);
-      }
+      if (leftoverItems > 0) largeBoxes = Math.ceil(leftoverItems / largeCapMixed);
       if (smallBoxes === 0 && largeBoxes === 0 && totalItems > 0) {
         if (totalItems <= 12) smallBoxes = 1;
         else largeBoxes = 1;
       }
     }
-
     const totalCost = (smallBoxes * SMALL_BOX_COST) + (largeBoxes * LARGE_BOX_COST);
     return { smallBoxes, largeBoxes, totalCost, totalItems };
   }
@@ -1602,18 +1703,13 @@
       `;
       container.appendChild(div);
     });
-
     document.querySelectorAll('.qty-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const action = btn.getAttribute('data-action');
         const name = btn.getAttribute('data-name');
-        if (action === 'increase') {
-          cart[name] = (cart[name] || 0) + 1;
-        } else if (action === 'decrease' && cart[name] > 0) {
-          cart[name]--;
-          if (cart[name] === 0) delete cart[name];
-        }
+        if (action === 'increase') { cart[name] = (cart[name] || 0) + 1; }
+        else if (action === 'decrease' && cart[name] > 0) { cart[name]--; if (cart[name] === 0) delete cart[name]; }
         updateOrderSummary();
         renderSelectorGrid();
       });
@@ -1626,30 +1722,37 @@
     const boxCostDisplay = document.getElementById('boxCostDisplay');
     const travelFeeDisplay = document.getElementById('travelFeeDisplay');
     const boxBreakdown = document.getElementById('boxBreakdownModern');
+    const flowerCostLine = document.getElementById('flowerCostLine');
+    const flowerCostDisplay = document.getElementById('flowerCostDisplay');
     
     let itemsSubtotal = 0;
     let summaryHtml = '';
-    
     for (const [name, qty] of Object.entries(cart)) {
       const item = allItems.find(i => i.name === name);
       const itemTotal = item.price * qty;
       itemsSubtotal += itemTotal;
       summaryHtml += `<div class="cart-item-row"><span>${qty}x ${name}</span><span>${itemTotal} LKR</span></div>`;
     }
-    
     if (Object.keys(cart).length === 0) {
       summaryHtml = '<p style="text-align: center; color: var(--text-soft);">No items selected yet</p>';
     }
-    
     summaryContainer.innerHTML = summaryHtml;
     
     const { smallBoxes, largeBoxes, totalCost, totalItems } = calculateBoxes();
     const travelFee = deliveryType === "delivery" ? TRAVEL_COST : 0;
-    const grandTotal = itemsSubtotal + totalCost + travelFee;
+    const flowerCost = flowerAdded ? 6500 : 0;
+    const grandTotal = itemsSubtotal + totalCost + travelFee + flowerCost;
     
     boxCostDisplay.textContent = totalCost + ' LKR';
     travelFeeDisplay.textContent = travelFee + ' LKR';
     grandTotalSpan.textContent = grandTotal + ' LKR';
+    
+    if (flowerAdded) {
+      flowerCostLine.style.display = 'flex';
+      flowerCostDisplay.textContent = '6500 LKR';
+    } else {
+      flowerCostLine.style.display = 'none';
+    }
     
     let breakdownHtml = '';
     if (smallBoxes > 0 || largeBoxes > 0) {
@@ -1661,30 +1764,50 @@
       breakdownHtml = '<div class="box-line"><span>No boxes selected</span></div>';
     }
     boxBreakdown.innerHTML = breakdownHtml;
+
+    // update popup visibility
+    const popup = document.getElementById('flowerPopup');
+    if (flowerAdded) {
+      popup.classList.add('show');
+    } else {
+      popup.classList.remove('show');
+    }
+    // update toggle button
+    const toggleBtn = document.getElementById('flowerToggleBtn');
+    if (flowerAdded) {
+      toggleBtn.innerHTML = '<i class="fas fa-check-circle"></i> Added';
+      toggleBtn.classList.add('active');
+    } else {
+      toggleBtn.innerHTML = '<i class="fas fa-plus-circle"></i> Add';
+      toggleBtn.classList.remove('active');
+    }
   }
 
   function resetOrder() {
     cart = {};
+    flowerAdded = false;
     updateOrderSummary();
     renderSelectorGrid();
   }
 
   function generatePDF(){
-    if(Object.keys(cart).length===0){ alert('Please select at least one item'); return; }
+    if(Object.keys(cart).length===0 && !flowerAdded){ alert('Please select at least one item or add a flower bouquet.'); return; }
     const { smallBoxes, largeBoxes, totalCost, totalItems } = calculateBoxes();
     const travelFee = deliveryType==="delivery"?TRAVEL_COST:0;
+    const flowerCost = flowerAdded ? 6500 : 0;
     let itemsSubtotal=0, itemsRows='';
     for(const [name,qty] of Object.entries(cart)){
       const it=allItems.find(i=>i.name===name);
       if(it){ itemsSubtotal+=it.price*qty; itemsRows+=`<tr><td>${qty}x ${name}</td><td>${it.price} LKR</td><td>${it.price*qty} LKR</td></tr>`; }
     }
-    const grandTotal=itemsSubtotal+totalCost+travelFee;
+    const grandTotal=itemsSubtotal+totalCost+travelFee+flowerCost;
     const currentDate=new Date().toLocaleString();
     const deliveryText = deliveryType==="delivery" ? `Delivery (Travel Fee): ${travelFee} LKR` : "Self Pickup (No Travel Fee)";
     const boxDetails = [];
     if(smallBoxes>0) boxDetails.push(`Small Box × ${smallBoxes} = ${smallBoxes*SMALL_BOX_COST} LKR`);
     if(largeBoxes>0) boxDetails.push(`Large Box × ${largeBoxes} = ${largeBoxes*LARGE_BOX_COST} LKR`);
     const boxDetailsStr = boxDetails.join(', ');
+    const flowerLine = flowerAdded ? `<div class="other-item">🌸 Flower Bouquet: 6500 LKR</div>` : '';
     const printWindow = window.open('', '_blank');
     printWindow.document.write(`
       <!DOCTYPE html>
@@ -1711,6 +1834,7 @@
         <div class="section-title">Other</div>
         <div class="other-item">Packaging (Boxes): ${boxDetailsStr || 'None'}</div>
         <div class="other-item">Transportation: ${deliveryText}</div>
+        ${flowerLine}
         <div class="total">Grand Total: ${grandTotal} LKR</div>
         <div class="footer"><p>Thank you for ordering from The Savory Bar!<br>WhatsApp: +94 70 565 9555 | IG/TikTok: @the.savory.bar</p></div>
         <script>window.onload = function() { window.print(); setTimeout(function() { window.close(); }, 500); }<\/script>
@@ -1721,43 +1845,35 @@
   }
 
   function sendWhatsAppOrder() {
-    if (Object.keys(cart).length === 0) {
-      alert('Please select at least one item to place an order!');
+    if (Object.keys(cart).length === 0 && !flowerAdded) {
+      alert('Please select at least one item or add a flower bouquet!');
       return;
     }
-    
     const { smallBoxes, largeBoxes, totalCost, totalItems } = calculateBoxes();
     const travelFee = deliveryType === "delivery" ? TRAVEL_COST : 0;
-    
+    const flowerCost = flowerAdded ? 6500 : 0;
     let itemsSubtotal = 0;
     let orderMessage = "CUSTOM BOX ORDER%0A%0A";
     orderMessage += "Items Ordered:%0A";
-    
     for (const [name, qty] of Object.entries(cart)) {
       const item = allItems.find(i => i.name === name);
       const itemTotal = item.price * qty;
       itemsSubtotal += itemTotal;
       orderMessage += `• ${qty}x ${name} - ${itemTotal} LKR%0A`;
     }
-    
     orderMessage += `%0ABox Breakdown (Preference: ${boxPreference}):%0A`;
     if (smallBoxes > 0) orderMessage += `• Small Box × ${smallBoxes} - ${smallBoxes * SMALL_BOX_COST} LKR%0A`;
     if (largeBoxes > 0) orderMessage += `• Large Box × ${largeBoxes} - ${largeBoxes * LARGE_BOX_COST} LKR%0A`;
     orderMessage += `Total Items: ${totalItems} items%0A`;
-    
-    if (deliveryType === "delivery") {
-      orderMessage += `Travel Fee: ${TRAVEL_COST} LKR (Delivery)%0A`;
-    } else {
-      orderMessage += `Pickup: Self pickup (No travel fee)%0A`;
-    }
-    
+    if (deliveryType === "delivery") orderMessage += `Travel Fee: ${TRAVEL_COST} LKR (Delivery)%0A`;
+    else orderMessage += `Pickup: Self pickup (No travel fee)%0A`;
+    if (flowerAdded) orderMessage += `🌸 Flower Bouquet: 6500 LKR%0A`;
     orderMessage += `────────────────%0A`;
-    orderMessage += `Grand Total: ${itemsSubtotal + totalCost + travelFee} LKR%0A%0A`;
+    orderMessage += `Grand Total: ${itemsSubtotal + totalCost + travelFee + flowerCost} LKR%0A%0A`;
     orderMessage += `Delivery Location: %0A`;
     orderMessage += `Delivery Date & Time: %0A`;
     orderMessage += `Contact Number: %0A%0A`;
     orderMessage += `Thank you!`;
-    
     const whatsappUrl = `https://wa.me/94705659555?text=${orderMessage}`;
     window.open(whatsappUrl, '_blank');
   }
@@ -1765,26 +1881,15 @@
   function initDeliveryAndBoxOptions() {
     const deliveryRadios = document.querySelectorAll('input[name="deliveryType"]');
     deliveryRadios.forEach(radio => {
-      radio.addEventListener('change', (e) => {
-        deliveryType = e.target.value;
-        updateOrderSummary();
-      });
+      radio.addEventListener('change', (e) => { deliveryType = e.target.value; updateOrderSummary(); });
     });
-
     const boxPreferenceRadios = document.querySelectorAll('input[name="boxPreference"]');
     boxPreferenceRadios.forEach(radio => {
-      radio.addEventListener('change', (e) => {
-        boxPreference = e.target.value;
-        updateOrderSummary();
-      });
+      radio.addEventListener('change', (e) => { boxPreference = e.target.value; updateOrderSummary(); });
     });
-    
     const filterInput = document.getElementById('itemFilterInput');
     if(filterInput) {
-      filterInput.addEventListener('input', (e) => {
-        currentFilter = e.target.value;
-        renderSelectorGrid();
-      });
+      filterInput.addEventListener('input', (e) => { currentFilter = e.target.value; renderSelectorGrid(); });
     }
   }
 
@@ -1828,7 +1933,6 @@
     { text: "The wraps & platters exceeded expectations! Authentic flavors & super fresh. Will order again!", name: "Sanduni" }
   ];
 
-  // Gallery images with proper Unsplash food photos as fallbacks
   const galleryImages = [
     { caption: "Grilled Chicken Wrap", url: "images/wrap.jpg", fallback: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=600&h=400&fit=crop" },
     { caption: "Mini Burgers Platter", url: "images/burger.jpg", fallback: "https://images.unsplash.com/photo-1550317138-10000687a72b?w=600&h=400&fit=crop" },
@@ -1916,30 +2020,22 @@
     });
   }
 
-  // Navbar scroll effect
+  // navbar scroll effect
   window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
+    if (window.scrollY > 50) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
   });
 
-  // Scroll to top button
+  // scroll top
   const scrollTopBtn = document.getElementById('scrollTop');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      scrollTopBtn.classList.add('show');
-    } else {
-      scrollTopBtn.classList.remove('show');
-    }
+    if (window.scrollY > 300) scrollTopBtn.classList.add('show');
+    else scrollTopBtn.classList.remove('show');
   });
-  scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-  // Custom cursor
+  // custom cursor
   const cursor = document.querySelector('.custom-cursor');
   if (cursor) {
     document.addEventListener('mousemove', (e) => {
@@ -1947,26 +2043,19 @@
       cursor.style.top = e.clientY + 'px';
       cursor.style.opacity = '0.6';
     });
-    document.addEventListener('mouseleave', () => {
-      cursor.style.opacity = '0';
-    });
+    document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
     document.querySelectorAll('a, button, .btn, .platter-card, .bite-card, .gallery-item').forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('active'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
     });
   }
 
-  // Mobile menu
+  // mobile menu
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const navLinksEl = document.getElementById('navLinks');
   if (mobileBtn && navLinksEl) {
-    mobileBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      navLinksEl.classList.toggle('active');
-    });
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => navLinksEl.classList.remove('active'));
-    });
+    mobileBtn.addEventListener('click', (e) => { e.stopPropagation(); navLinksEl.classList.toggle('active'); });
+    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navLinksEl.classList.remove('active')));
     document.addEventListener('click', (e) => {
       if (!navLinksEl.contains(e.target) && !mobileBtn.contains(e.target) && navLinksEl.classList.contains('active')) {
         navLinksEl.classList.remove('active');
@@ -1974,20 +2063,29 @@
     });
   }
 
-  // Smooth scroll
+  // smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
       if (href === "#" || href === "") return;
       const target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
 
-  // Initialize custom box event listeners
+  // Flower toggle
+  document.getElementById('flowerToggleBtn').addEventListener('click', function() {
+    flowerAdded = !flowerAdded;
+    updateOrderSummary();
+  });
+  document.getElementById('removeBouquetBtn').addEventListener('click', function() {
+    if (flowerAdded) {
+      flowerAdded = false;
+      updateOrderSummary();
+    }
+  });
+
+  // init buttons
   document.getElementById('resetOrderBtn')?.addEventListener('click', resetOrder);
   document.getElementById('whatsappOrderBtn')?.addEventListener('click', sendWhatsAppOrder);
   document.getElementById('pdfOrderBtn')?.addEventListener('click', generatePDF);
