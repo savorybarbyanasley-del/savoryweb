@@ -1289,7 +1289,7 @@
       font-weight: 600;
     }
 
-    /* ===== FLOWER BOUQUET POPUP - WITH TERRACOTTA STROKE ===== */
+    /* ===== FLOWER BOUQUET POPUP - SHAPE-FOLLOWING STROKE using drop-shadow ===== */
     .flower-bouquet-popup {
       position: fixed;
       bottom: 120px;
@@ -1314,26 +1314,24 @@
       max-height: 340px;
       object-fit: contain;
       display: block;
-      border-radius: 16px;
+      border-radius: 0;
       background: transparent;
-      padding: 8px;
-      /* TERRACOTTA STROKE / BORDER */
-      border: 4px solid #C26A2C;
-      box-shadow: 0 0 20px rgba(194, 106, 44, 0.3), inset 0 0 20px rgba(194, 106, 44, 0.05);
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      padding: 0;
+      /* SHAPE-FOLLOWING STROKE using drop-shadow */
+      filter: drop-shadow(0 0 0 6px #C26A2C) drop-shadow(0 0 12px rgba(194, 106, 44, 0.3));
+      transition: filter 0.3s ease;
     }
     .flower-bouquet-popup img:hover {
-      border-color: #D4844A;
-      box-shadow: 0 0 30px rgba(194, 106, 44, 0.5), inset 0 0 30px rgba(194, 106, 44, 0.1);
+      filter: drop-shadow(0 0 0 8px #D4844A) drop-shadow(0 0 25px rgba(194, 106, 44, 0.5));
     }
-    /* Remove button overlay on the image */
+    /* Remove button overlay */
     .flower-bouquet-popup .remove-bouquet-overlay {
       position: absolute;
       top: 12px;
       right: 12px;
       background: rgba(194, 106, 44, 0.85);
       backdrop-filter: blur(6px);
-      border: 2px solid #C26A2C;
+      border: none;
       border-radius: 50%;
       width: 36px;
       height: 36px;
@@ -1346,13 +1344,13 @@
       justify-content: center;
       font-family: 'Inter', sans-serif;
       opacity: 0;
+      z-index: 2;
     }
     .flower-bouquet-popup:hover .remove-bouquet-overlay {
       opacity: 1;
     }
     .flower-bouquet-popup .remove-bouquet-overlay:hover {
       background: #e74c3c;
-      border-color: #e74c3c;
       transform: scale(1.1);
     }
     /* small label below image */
@@ -1372,25 +1370,20 @@
       margin-right: auto;
       width: fit-content;
       opacity: 0.8;
-      border: 1px solid #C26A2C;
     }
     [data-theme="dark"] .flower-bouquet-popup .bouquet-label {
       background: rgba(0,0,0,0.6);
       color: #e0d6c8;
-      border-color: #edb153;
     }
     /* Dark mode stroke color */
     [data-theme="dark"] .flower-bouquet-popup img {
-      border-color: #edb153;
-      box-shadow: 0 0 20px rgba(237, 177, 83, 0.3), inset 0 0 20px rgba(237, 177, 83, 0.05);
+      filter: drop-shadow(0 0 0 6px #edb153) drop-shadow(0 0 12px rgba(237, 177, 83, 0.3));
     }
     [data-theme="dark"] .flower-bouquet-popup img:hover {
-      border-color: #fdfdfd;
-      box-shadow: 0 0 30px rgba(237, 177, 83, 0.5);
+      filter: drop-shadow(0 0 0 8px #fdfdfd) drop-shadow(0 0 25px rgba(237, 177, 83, 0.5));
     }
     [data-theme="dark"] .flower-bouquet-popup .remove-bouquet-overlay {
       background: rgba(237, 177, 83, 0.85);
-      border-color: #edb153;
     }
 
     @media (max-width: 800px) {
@@ -1431,8 +1424,6 @@
       }
       .flower-bouquet-popup img {
         max-height: 240px;
-        border-width: 3px;
-        padding: 6px;
       }
     }
     @media (max-width: 540px) {
@@ -1445,8 +1436,6 @@
       }
       .flower-bouquet-popup img {
         max-height: 190px;
-        border-width: 3px;
-        padding: 5px;
       }
       .flower-bouquet-popup .remove-bouquet-overlay {
         width: 28px;
@@ -1661,7 +1650,7 @@
   <i class="fas fa-arrow-up"></i>
 </div>
 
-<!-- FLOWER BOUQUET POPUP - WITH TERRACOTTA STROKE -->
+<!-- FLOWER BOUQUET POPUP - SHAPE-FOLLOWING STROKE -->
 <div class="flower-bouquet-popup" id="flowerPopup">
   <img src="images/flowerbo.png" alt="Flower Bouquet" id="flowerPopupImg" onerror="this.src='https://placehold.co/280x340/edb153/ffffff?text=🌺+Bouquet'">
   <button class="remove-bouquet-overlay" id="removeBouquetBtn" aria-label="Remove bouquet">
