@@ -805,25 +805,6 @@
       border-color: var(--terracotta);
       box-shadow: var(--shadow-md);
     }
-    .platter-card.bouquet-card {
-      border: 2px solid var(--terracotta);
-      background: linear-gradient(160deg, var(--card-bg) 60%, rgba(237,177,83,0.08));
-    }
-    .bouquet-badge {
-      position: absolute;
-      top: 18px;
-      right: -34px;
-      background: var(--terracotta);
-      color: white;
-      padding: 5px 40px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      transform: rotate(35deg);
-      font-family: 'Inter', sans-serif;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      text-transform: uppercase;
-    }
     .platter-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.65rem;
@@ -1327,7 +1308,7 @@
       <div class="hero-content">
         <div class="logo-main">THE SAVORY BAR</div>
         <div class="savor-line">Savor. Share. Celebrate.</div>
-        <p>Delicious bites crafted to make every moment memorable — artisan wraps, classic rolls, premium platters & our signature flower bouquet.</p>
+        <p>Delicious bites crafted to make every moment memorable — artisan wraps, classic rolls & premium platters.</p>
         <div class="btn-group">
           <a href="#platters" class="btn btn-primary">View Platters</a>
           <a href="#individual" class="btn btn-outline">Build Your Box</a>
@@ -1381,10 +1362,6 @@
             <h4><i class="fas fa-cubes"></i> Large Box — 300 LKR</h4>
             <p>18–23 items (mix of different items) — Perfect for family gatherings & parties</p>
           </div>
-          <div class="info-card">
-            <h4><i class="fas fa-spa"></i> Flower Bouquet — 6,000 LKR</h4>
-            <p>A beautiful flower bouquet beautifully arranged with your favorite savory bites tucked in — a stunning gift for celebrations & surprises.</p>
-          </div>
         </div>
 
         <!-- Delivery & Box Preference -->
@@ -1398,7 +1375,6 @@
             <label><input type="radio" name="boxPreference" value="auto" checked> Auto (optimized)</label>
             <label><input type="radio" name="boxPreference" value="large"> Prefer Large Boxes</label>
             <label><input type="radio" name="boxPreference" value="small"> Prefer Small Boxes</label>
-            <label><input type="radio" name="boxPreference" value="bouquet"> <i class="fas fa-spa"></i> Flower Bouquet (6,000 LKR)</label>
           </div>
         </div>
 
@@ -1527,7 +1503,6 @@
   const TRAVEL_COST = 250;
   const SMALL_BOX_COST = 250;
   const LARGE_BOX_COST = 300;
-  const BOUQUET_COST = 6000;
   let currentFilter = "";
 
   // Advanced box calculation based on user preference
@@ -1553,13 +1528,7 @@
     }
 
     if (totalItems === 0) {
-      return { smallBoxes: 0, largeBoxes: 0, bouquets: 0, totalCost: 0, totalItems: 0 };
-    }
-
-    // Bouquet preference: package everything as a single food bouquet
-    if (boxPreference === 'bouquet') {
-      const totalCost = BOUQUET_COST;
-      return { smallBoxes: 0, largeBoxes: 0, bouquets: 1, totalCost, totalItems };
+      return { smallBoxes: 0, largeBoxes: 0, totalCost: 0, totalItems: 0 };
     }
 
     const smallCap = {
@@ -1608,7 +1577,7 @@
     }
 
     const totalCost = (smallBoxes * SMALL_BOX_COST) + (largeBoxes * LARGE_BOX_COST);
-    return { smallBoxes, largeBoxes, bouquets: 0, totalCost, totalItems };
+    return { smallBoxes, largeBoxes, totalCost, totalItems };
   }
 
   function renderSelectorGrid() {
@@ -1674,7 +1643,7 @@
     
     summaryContainer.innerHTML = summaryHtml;
     
-    const { smallBoxes, largeBoxes, bouquets, totalCost, totalItems } = calculateBoxes();
+    const { smallBoxes, largeBoxes, totalCost, totalItems } = calculateBoxes();
     const travelFee = deliveryType === "delivery" ? TRAVEL_COST : 0;
     const grandTotal = itemsSubtotal + totalCost + travelFee;
     
@@ -1683,11 +1652,7 @@
     grandTotalSpan.textContent = grandTotal + ' LKR';
     
     let breakdownHtml = '';
-    if (bouquets > 0) {
-      breakdownHtml = `<div class="box-line"><strong>Packaging:</strong></div>`;
-      breakdownHtml += `<div class="box-line"><span><i class="fas fa-spa"></i> Flower Bouquet × ${bouquets}</span><span>${bouquets * BOUQUET_COST} LKR</span></div>`;
-      breakdownHtml += `<div class="box-line" style="border-top:1px solid var(--border-light); margin-top:6px; padding-top:8px;"><span>Total Items:</span><span>${totalItems} items</span></div>`;
-    } else if (smallBoxes > 0 || largeBoxes > 0) {
+    if (smallBoxes > 0 || largeBoxes > 0) {
       breakdownHtml = `<div class="box-line"><strong>Box Breakdown:</strong></div>`;
       if (smallBoxes > 0) breakdownHtml += `<div class="box-line"><span>Small Box × ${smallBoxes}</span><span>${smallBoxes * SMALL_BOX_COST} LKR</span></div>`;
       if (largeBoxes > 0) breakdownHtml += `<div class="box-line"><span>Large Box × ${largeBoxes}</span><span>${largeBoxes * LARGE_BOX_COST} LKR</span></div>`;
@@ -1706,7 +1671,7 @@
 
   function generatePDF(){
     if(Object.keys(cart).length===0){ alert('Please select at least one item'); return; }
-    const { smallBoxes, largeBoxes, bouquets, totalCost, totalItems } = calculateBoxes();
+    const { smallBoxes, largeBoxes, totalCost, totalItems } = calculateBoxes();
     const travelFee = deliveryType==="delivery"?TRAVEL_COST:0;
     let itemsSubtotal=0, itemsRows='';
     for(const [name,qty] of Object.entries(cart)){
@@ -1717,7 +1682,6 @@
     const currentDate=new Date().toLocaleString();
     const deliveryText = deliveryType==="delivery" ? `Delivery (Travel Fee): ${travelFee} LKR` : "Self Pickup (No Travel Fee)";
     const boxDetails = [];
-    if(bouquets>0) boxDetails.push(`Flower Bouquet × ${bouquets} = ${bouquets*BOUQUET_COST} LKR`);
     if(smallBoxes>0) boxDetails.push(`Small Box × ${smallBoxes} = ${smallBoxes*SMALL_BOX_COST} LKR`);
     if(largeBoxes>0) boxDetails.push(`Large Box × ${largeBoxes} = ${largeBoxes*LARGE_BOX_COST} LKR`);
     const boxDetailsStr = boxDetails.join(', ');
@@ -1745,7 +1709,7 @@
         <div class="section-title">Ordered Items</div>
         <table><thead><tr><th>Item</th><th>Unit Price</th><th>Total</th></tr></thead><tbody>${itemsRows}</tbody></table>
         <div class="section-title">Other</div>
-        <div class="other-item">Packaging: ${boxDetailsStr || 'None'}</div>
+        <div class="other-item">Packaging (Boxes): ${boxDetailsStr || 'None'}</div>
         <div class="other-item">Transportation: ${deliveryText}</div>
         <div class="total">Grand Total: ${grandTotal} LKR</div>
         <div class="footer"><p>Thank you for ordering from The Savory Bar!<br>WhatsApp: +94 70 565 9555 | IG/TikTok: @the.savory.bar</p></div>
@@ -1762,7 +1726,7 @@
       return;
     }
     
-    const { smallBoxes, largeBoxes, bouquets, totalCost, totalItems } = calculateBoxes();
+    const { smallBoxes, largeBoxes, totalCost, totalItems } = calculateBoxes();
     const travelFee = deliveryType === "delivery" ? TRAVEL_COST : 0;
     
     let itemsSubtotal = 0;
@@ -1776,8 +1740,7 @@
       orderMessage += `• ${qty}x ${name} - ${itemTotal} LKR%0A`;
     }
     
-    orderMessage += `%0APackaging (Preference: ${boxPreference}):%0A`;
-    if (bouquets > 0) orderMessage += `• Flower Bouquet × ${bouquets} - ${bouquets * BOUQUET_COST} LKR%0A`;
+    orderMessage += `%0ABox Breakdown (Preference: ${boxPreference}):%0A`;
     if (smallBoxes > 0) orderMessage += `• Small Box × ${smallBoxes} - ${smallBoxes * SMALL_BOX_COST} LKR%0A`;
     if (largeBoxes > 0) orderMessage += `• Large Box × ${largeBoxes} - ${largeBoxes * LARGE_BOX_COST} LKR%0A`;
     orderMessage += `Total Items: ${totalItems} items%0A`;
@@ -1851,7 +1814,6 @@
 
   // Platters data
   const plattersData = [
-    { name: "The Flower Bouquet", desc: "A beautiful flower bouquet with savory bites tucked in — a unique surprise gift for birthdays, anniversaries & celebrations.", price: "6,000 LKR", serves: "A stunning bouquet arrangement with food", items: ["Fresh flower arrangement", "Curated mix of wraps, rolls, patties & cutlets", "Bouquet-style presentation", "Perfect as a gift"], isBouquet: true },
     { name: "The Wrap & Roll Platter", desc: "A modern party favorite", price: "3,500 LKR", serves: "Serves 6–8 people", items: ["6 Chicken Wraps", "6 Chicken Rolls", "6 Mini Burgers"] },
     { name: "The Classic Bite Box", desc: "Evening tea snack", price: "3,650 LKR", serves: "Serves 5–6 people", items: ["4 Sandwiches", "4 Chicken Wraps", "4 Chicken Patties", "4 Chicken Rolls", "4 Mini Burgers"] },
     { name: "The Sandwich Social", desc: "Ideal for office meetings", price: "4,650 LKR", serves: "Serves 8–10 people", items: ["12 Sandwiches", "12 Chicken Patties", "12 Chicken Rolls"] },
@@ -1884,12 +1846,11 @@
     grid.innerHTML = '';
     plattersData.forEach((p, idx) => {
       const card = document.createElement('div');
-      card.className = p.isBouquet ? 'platter-card bouquet-card' : 'platter-card';
+      card.className = 'platter-card';
       card.setAttribute('data-aos', 'fade-up');
       card.setAttribute('data-aos-duration', '600');
       card.innerHTML = `
-        ${p.isBouquet ? '<div class="bouquet-badge">New</div>' : ''}
-        <div class="platter-title">${p.isBouquet ? '<i class="fas fa-spa" style="margin-right:8px;"></i>' : ''}${p.name}</div>
+        <div class="platter-title">${p.name}</div>
         <div class="price">${p.price}</div>
         <div class="serves">${p.serves}</div>
         <ul class="item-list">
