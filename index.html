@@ -1289,7 +1289,7 @@
       font-weight: 600;
     }
 
-    /* ===== FLOWER BOUQUET POPUP (PURE IMAGE, NO BACKGROUND, SLIDE FROM RIGHT) ===== */
+    /* ===== FLOWER BOUQUET POPUP - WITH TERRACOTTA STROKE ===== */
     .flower-bouquet-popup {
       position: fixed;
       bottom: 120px;
@@ -1314,18 +1314,26 @@
       max-height: 340px;
       object-fit: contain;
       display: block;
-      border-radius: 0;
+      border-radius: 16px;
       background: transparent;
-      padding: 0;
+      padding: 8px;
+      /* TERRACOTTA STROKE / BORDER */
+      border: 4px solid #C26A2C;
+      box-shadow: 0 0 20px rgba(194, 106, 44, 0.3), inset 0 0 20px rgba(194, 106, 44, 0.05);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
-    /* Remove button overlay on the image itself */
+    .flower-bouquet-popup img:hover {
+      border-color: #D4844A;
+      box-shadow: 0 0 30px rgba(194, 106, 44, 0.5), inset 0 0 30px rgba(194, 106, 44, 0.1);
+    }
+    /* Remove button overlay on the image */
     .flower-bouquet-popup .remove-bouquet-overlay {
       position: absolute;
-      top: 8px;
-      right: 8px;
-      background: rgba(0,0,0,0.5);
+      top: 12px;
+      right: 12px;
+      background: rgba(194, 106, 44, 0.85);
       backdrop-filter: blur(6px);
-      border: none;
+      border: 2px solid #C26A2C;
       border-radius: 50%;
       width: 36px;
       height: 36px;
@@ -1338,36 +1346,51 @@
       justify-content: center;
       font-family: 'Inter', sans-serif;
       opacity: 0;
-      transition: opacity 0.3s ease, transform 0.2s;
     }
     .flower-bouquet-popup:hover .remove-bouquet-overlay {
       opacity: 1;
     }
     .flower-bouquet-popup .remove-bouquet-overlay:hover {
       background: #e74c3c;
+      border-color: #e74c3c;
       transform: scale(1.1);
     }
-    /* small label below image (optional, but we keep it minimal) */
+    /* small label below image */
     .flower-bouquet-popup .bouquet-label {
       text-align: center;
       font-size: 0.75rem;
       font-weight: 600;
       color: var(--text-soft);
-      margin-top: 4px;
+      margin-top: 6px;
       font-family: 'Inter', sans-serif;
       background: rgba(255,255,255,0.7);
       backdrop-filter: blur(4px);
-      padding: 4px 12px;
+      padding: 4px 14px;
       border-radius: 30px;
       display: inline-block;
       margin-left: auto;
       margin-right: auto;
       width: fit-content;
       opacity: 0.8;
+      border: 1px solid #C26A2C;
     }
     [data-theme="dark"] .flower-bouquet-popup .bouquet-label {
       background: rgba(0,0,0,0.6);
       color: #e0d6c8;
+      border-color: #edb153;
+    }
+    /* Dark mode stroke color */
+    [data-theme="dark"] .flower-bouquet-popup img {
+      border-color: #edb153;
+      box-shadow: 0 0 20px rgba(237, 177, 83, 0.3), inset 0 0 20px rgba(237, 177, 83, 0.05);
+    }
+    [data-theme="dark"] .flower-bouquet-popup img:hover {
+      border-color: #fdfdfd;
+      box-shadow: 0 0 30px rgba(237, 177, 83, 0.5);
+    }
+    [data-theme="dark"] .flower-bouquet-popup .remove-bouquet-overlay {
+      background: rgba(237, 177, 83, 0.85);
+      border-color: #edb153;
     }
 
     @media (max-width: 800px) {
@@ -1408,6 +1431,8 @@
       }
       .flower-bouquet-popup img {
         max-height: 240px;
+        border-width: 3px;
+        padding: 6px;
       }
     }
     @media (max-width: 540px) {
@@ -1420,6 +1445,15 @@
       }
       .flower-bouquet-popup img {
         max-height: 190px;
+        border-width: 3px;
+        padding: 5px;
+      }
+      .flower-bouquet-popup .remove-bouquet-overlay {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+        top: 8px;
+        right: 8px;
       }
     }
   </style>
@@ -1527,7 +1561,7 @@
           </div>
         </div>
 
-        <!-- FLOWER BOUQUET TOGGLE (NEW) -->
+        <!-- FLOWER BOUQUET TOGGLE -->
         <div class="flower-toggle-area">
           <span class="label"><i class="fas fa-seedling"></i> Add Flower Bouquet <span class="flower-price-badge">+6500 LKR</span></span>
           <button class="toggle-btn" id="flowerToggleBtn"><i class="fas fa-plus-circle"></i> Add</button>
@@ -1627,12 +1661,13 @@
   <i class="fas fa-arrow-up"></i>
 </div>
 
-<!-- FLOWER BOUQUET POPUP - PURE IMAGE, SLIDE FROM RIGHT -->
+<!-- FLOWER BOUQUET POPUP - WITH TERRACOTTA STROKE -->
 <div class="flower-bouquet-popup" id="flowerPopup">
   <img src="images/flowerbo.png" alt="Flower Bouquet" id="flowerPopupImg" onerror="this.src='https://placehold.co/280x340/edb153/ffffff?text=🌺+Bouquet'">
   <button class="remove-bouquet-overlay" id="removeBouquetBtn" aria-label="Remove bouquet">
     <i class="fas fa-times"></i>
   </button>
+  <div class="bouquet-label">🌸 Flower Bouquet · 6,500 LKR</div>
 </div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
